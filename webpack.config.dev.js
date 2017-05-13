@@ -6,13 +6,15 @@ var definePlugin = new webpack.DefinePlugin({
 var globalHMRPlugin = new webpack.HotModuleReplacementPlugin({multiStep: true});
 var readableHMRUpdatesPlugin = new webpack.NamedModulesPlugin();
 
+var devServerPort = 8090;
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   context: path.resolve(__dirname, 'app'),
   entry: ['react-hot-loader/patch',
     // activate HMR for React
 
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:' + devServerPort,
     // bundle the client for webpack-dev-server
     // and connect to the provided endpoint
 
@@ -58,6 +60,7 @@ module.exports = {
   ],
   target: 'electron',
   devServer: {
+    port: devServerPort,
     contentBase: path.resolve(__dirname, 'bundle'),
     // match the output path
     publicPath: '/',

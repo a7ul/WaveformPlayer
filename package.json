@@ -5,7 +5,7 @@
   "main": "electron.start.js",
   "scripts": {
     "seperator:main": "======================== MAIN SCRIPTS ==========================================",
-    "start": "concurrently --kill-others 'npm run compile:dev' 'npm run electron:dev'",
+    "start": "concurrently --kill-others 'npm run compile:dev' 'npm run electron:dev' 'npm run reduxdevtools:dev'",
     "build": "npm run compile:prod && npm run electron:prod",
     "package:win": "npm run compile:prod && electron-packager ./ YPlayer --platform=win32 --arch=x64 --out ~/Desktop/YPlayer-Windowsx86",
     "package:mac": "npm run compile:prod && electron-packager ./ YPlayer --platform=darwin --arch=x64 --out ~/Desktop/YPlayer-Macx86",
@@ -21,7 +21,8 @@
     "compile:dev": "npm run prepare:dev && NODE_ENV='development' webpack-dev-server --progress --config webpack.config.dev.js",
     "compile:prod": "NODE_ENV='production' webpack -p --config webpack.config.prod.js",
     "electron:dev": "NODE_ENV='development' electron electron.start.js",
-    "electron:prod": "NODE_ENV='production' electron electron.start.js"
+    "electron:prod": "NODE_ENV='production' electron electron.start.js",
+    "reduxdevtools:dev": "node ./helpers/redux-devtools-server"
   },
   "jest": {
     "cacheDirectory": "./cache",

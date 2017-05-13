@@ -1,14 +1,13 @@
 import React from 'react';
 import createHistory from 'history/createBrowserHistory';
 import {Route} from 'react-router';
-import {ConnectedRouter} from 'react-router-redux';
-import {routerMiddleware} from 'react-router-redux';
+import {ConnectedRouter, routerMiddleware, push, goBack} from 'react-router-redux';
 
 import Home from '../pages/home.page';
 
 const history = createHistory();
 
-const Routing = () => (
+const Router = () => (
   <ConnectedRouter history={history}>
     <div>
       <Route exact path='/' component={Home}/>
@@ -17,5 +16,7 @@ const Routing = () => (
   </ConnectedRouter>
 );
 
-export default Routing;
+export default Router;
 export const reduxRouterMiddleware = routerMiddleware(history);
+export const pushAction = push;
+export const goBackAction = goBack;
