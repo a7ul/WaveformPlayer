@@ -33,6 +33,13 @@
 - Give hostname as `localhost` and port as `9000` (u can change this at `./helpers/redux-devtools-server.config.json`)
 - Press submit
 
+### Pre-push hooks
+Currently whenever you push three types of tests run to make sure you are pushing a working code.
+1. unit test cases
+2. eslint
+3. webpack prod build
+
+
 ### Contributors Guide
 **Common guidelines**
 - Make sure your write test cases for all the code you write.
