@@ -52,6 +52,7 @@ module.exports = {
         }]
       }
     ],
+    noParse: [/ws\/lib/]
   },
   plugins: [
     definePlugin,
