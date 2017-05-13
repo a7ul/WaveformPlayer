@@ -3,7 +3,7 @@ var path = require('path');
 var definePlugin = new webpack.DefinePlugin({
   __DEV__: (process.env.NODE_ENV === 'development')
 });
-var globalHMRPlugin = new webpack.HotModuleReplacementPlugin({multiStep: true});
+var globalHMRPlugin = new webpack.HotModuleReplacementPlugin();
 var readableHMRUpdatesPlugin = new webpack.NamedModulesPlugin();
 
 var devServerPort = 8090;

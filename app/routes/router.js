@@ -10,7 +10,7 @@ const history = createHistory();
 const Router = () => (
   <ConnectedRouter history={history}>
     <div>
-      <Route exact path='/' component={Home}/>
+      <Route path='/' component={Home}/>
       <Route path='/home' component={Home}/>
     </div>
   </ConnectedRouter>
