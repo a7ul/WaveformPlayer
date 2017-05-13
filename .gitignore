@@ -1,3 +1,11 @@
+*.un~
+bundle/*
+!bundle/.gitkeep
+cache
 node_modules
-dist/*
 npm-debug.log
+.DS_Store
+.idea
+releases
+coverage
+.nyc_output

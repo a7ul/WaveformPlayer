@@ -1,5 +1,9 @@
-console.log('TEST32');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AppPage from './App.page';
 
-module.exports = {
 
-};
+ReactDOM.render(
+  <AppPage/>,
+  document.getElementById('root')
+);

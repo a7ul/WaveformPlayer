@@ -9,8 +9,8 @@
   "plugins": [
     "react"
   ],
-  "ecmaFeatures": {
-    "jsx": true
+  "parserOptions": {
+    "sourceType": "module"
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
@@ -59,7 +59,7 @@
     "no-console": 0
   },
   "globals": {
-    "GLOBAL": false,
+    "global": false,
     "it": false,
     "xit": false,
     "expect": false,
