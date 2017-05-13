@@ -3,7 +3,7 @@ var path = require('path');
 var definePlugin = new webpack.DefinePlugin({
   __DEV__: (process.env.NODE_ENV === 'development')
 });
-var globalHMRPlugin = new webpack.HotModuleReplacementPlugin();
+var globalHMRPlugin = new webpack.HotModuleReplacementPlugin({multiStep: true});
 var readableHMRUpdatesPlugin = new webpack.NamedModulesPlugin();
 
 module.exports = {
@@ -56,7 +56,7 @@ module.exports = {
     globalHMRPlugin,
     readableHMRUpdatesPlugin
   ],
-  target: 'web',
+  target: 'electron',
   devServer: {
     contentBase: path.resolve(__dirname, 'bundle'),
     // match the output path

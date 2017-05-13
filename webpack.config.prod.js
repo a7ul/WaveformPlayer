@@ -41,5 +41,5 @@ module.exports = {
   plugins: [
     definePlugin
   ],
-  target: 'web'
+  target: 'electron'
 };
