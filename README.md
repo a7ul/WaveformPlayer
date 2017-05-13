@@ -21,8 +21,22 @@
   - `yarn test:update` : Run jest and updates the snapshots for the components
   - `yarn test:coverage` : Runs jest test cases and opens coverage report
   - `yarn lint` : Runs eslint and displays all lint errors
-  - `yarn lint:fix` : Runs elsint and tries auto fix of errors
+  - `yarn lint:fix` : Runs eslint and tries auto fix of errors
 - **Utility scripts are basically implementation for the above scripts**
+
+### Contributors Guide
+**Common guidelines**
+- Make sure your write test cases for all the code you write.
+- Make sure eslint passes
+
+**For direct contributors:**
+ - No direct push to master is allowed. (enforced in Github)
+ - Raise a PR and it will be reviewed and merged.
+
+**For external contributors:**
+ - Fork the repo
+ - Make your changes in the master branch of the forked repo
+ - Raise a PR and it will be reviewed and merged.
 
 ## License
 
