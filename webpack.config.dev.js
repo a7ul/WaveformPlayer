@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var definePlugin = new webpack.DefinePlugin({
-  __DEV__: (process.env.NODE_ENV === 'development')
+  'process.env.NODE_ENV': JSON.stringify('development')
 });
 var globalHMRPlugin = new webpack.HotModuleReplacementPlugin();
 var readableHMRUpdatesPlugin = new webpack.NamedModulesPlugin();

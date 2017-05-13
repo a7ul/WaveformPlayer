@@ -1,2 +1,4 @@
 var remotedev =  require('remotedev-server');
-remotedev({hostname: 'localhost', port: 9000});
+var reduxDevtoolsConfig = require('./redux-devtools-server.config.json');
+
+remotedev(reduxDevtoolsConfig);

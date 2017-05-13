@@ -24,13 +24,13 @@
   - `yarn lint:fix` : Runs eslint and tries auto fix of errors
 - **Utility scripts are basically implementation for the above scripts**
 
-*The port configurations are present in `webpack.config.dev.js` and `./helpers/redux-devtools-server.js`*
+*The port configurations are present in `webpack.config.dev.js` and `./helpers/redux-devtools-server.config.json`*
 
 ### Redux Devtools Setup
 - By default when you run `yarn start` a remote-redux-devtools-server is launched on `localhost:9000`
 - Just open up the extension of [remote redux devtools](https://github.com/zalmoxisus/redux-devtools-extension) for chrome or firefox or electron.
 - Go to settings -> and check ✅ Use custom (local) server
-- Give hostname as `localhost` and port as `9000` (u can change this at `./helpers/redux-devtools-server`)
+- Give hostname as `localhost` and port as `9000` (u can change this at `./helpers/redux-devtools-server.config.json`)
 - Press submit
 
 ### Contributors Guide
