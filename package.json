@@ -24,6 +24,11 @@
     "electron:prod": "NODE_ENV='production' electron electron.start.js",
     "reduxdevtools:dev": "node ./helpers/redux-devtools-server"
   },
+  "pre-push": [
+    "test",
+    "lint",
+    "compile:prod"
+  ],
   "jest": {
     "cacheDirectory": "./cache",
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
@@ -60,6 +65,7 @@
     "file-loader": "0.11.1",
     "jest": "^20.0.1",
     "jest-enzyme": "^3.1.0",
+    "pre-push": "^0.1.1",
     "react-addons-test-utils": "^16.0.0-alpha.3",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-test-renderer": "^16.0.0-alpha.12",
