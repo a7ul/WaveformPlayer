@@ -70,7 +70,7 @@ describe('youtubedl utility', () => {
   it('getYTDLVersion: gets youtube-dl binary version', () => {
     mockYTDLEnvironmentForTest();
     return getYTDLVersion().then(() => {
-      expect(getProcessExecutor).lastCalledWith(youtubeDLMacPath);
+      expect(getProcessExecutor).lastCalledWith(youtubeDLMacPath, undefined);
       expect(executeSpy).toBeCalledWith('--version');
     });
   });
