@@ -9,8 +9,7 @@ export const getYoutubeDL = () => {
     'WINDOWS': getExecutableRealFilePath(youtubeDLWinPath),
     'LINUX': getExecutableRealFilePath(youtubeDLMacPath)
   };
-  const selectedYTDL = ytdlBinaryMap[getCurrentOS()] || null;
-  return getProcessExecutor(selectedYTDL);
+  return getProcessExecutor(ytdlBinaryMap[getCurrentOS()]);
 };
 
 export const getYTDLVersion = () => getYoutubeDL().execute('--version');

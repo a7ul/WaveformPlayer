@@ -14,9 +14,9 @@ describe('process utility', () => {
   afterAll(() => {
     jest.unmock('child_process');
   });
-  
+
   it('getProcessExecutor : returns a executor and file path passed ', () => {
-    expect(typeof getProcessExecutor(null).execute).toEqual('function');
+    expect(typeof getProcessExecutor().execute).toEqual('function');
     expect(getProcessExecutor('./test.sh').binaryPath).toEqual('./test.sh');
     const error = new Error('some error');
     const executable = './test.sh';
