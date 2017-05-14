@@ -30,6 +30,10 @@
     "compile:prod"
   ],
   "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "\\.(css|less|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|bin|exe)$": "<rootDir>/helpers/custom-file-transformer.js"
+    },
     "cacheDirectory": "./cache",
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "coverageThreshold": {
@@ -63,6 +67,7 @@
     "eslint": "^4.0.0-alpha.2",
     "eslint-plugin-react": "^7.0.0-rc.1",
     "file-loader": "0.11.1",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "jest": "^20.0.1",
     "jest-enzyme": "^3.1.0",
     "pre-push": "^0.1.1",

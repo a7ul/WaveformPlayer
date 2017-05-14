@@ -35,6 +35,13 @@ module.exports = {
           loader: 'file-loader',
           options: {name: 'bundle/assets/[hash].[ext]'}
         }]
+      },
+      {
+        test: /\.bin$|\.exe$/,
+        use: [{
+          loader: 'file-loader',
+          options: {name: 'bundle/binaries/[name].[ext]'}
+        }]
       }
     ],
     noParse: [/ws\/lib/]

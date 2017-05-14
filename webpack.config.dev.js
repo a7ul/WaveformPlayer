@@ -1,11 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
+var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 var definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify('development')
 });
 var globalHMRPlugin = new webpack.HotModuleReplacementPlugin();
 var readableHMRUpdatesPlugin = new webpack.NamedModulesPlugin();
-
+var friendlyErrorMessagePlugin = new FriendlyErrorsWebpackPlugin();
 var devServerPort = 8090;
 
 module.exports = {
@@ -50,6 +51,13 @@ module.exports = {
           loader: 'file-loader',
           options: {name: 'bundle/assets/[hash].[ext]'}
         }]
+      },
+      {
+        test: /\.bin$|\.exe$/,
+        use: [{
+          loader: 'file-loader',
+          options: {name: 'bundle/binaries/[name].[ext]'}
+        }]
       }
     ],
     noParse: [/ws\/lib/]
@@ -57,11 +65,13 @@ module.exports = {
   plugins: [
     definePlugin,
     globalHMRPlugin,
-    readableHMRUpdatesPlugin
+    readableHMRUpdatesPlugin,
+    friendlyErrorMessagePlugin
   ],
   target: 'electron',
   devServer: {
     port: devServerPort,
+    quiet: true, // This is because we are using another friendlyErrorMessagePlugin 
     contentBase: path.resolve(__dirname, 'bundle'),
     // match the output path
     publicPath: '/',
