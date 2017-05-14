@@ -61,6 +61,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^7.0.0-alpha.9",
     "concurrently": "^3.4.0",
+    "devtron": "^1.4.0",
     "electron-packager": "^8.7.0",
     "enzyme": "^2.8.2",
     "escope": "^3.6.0",

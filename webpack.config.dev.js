@@ -56,7 +56,7 @@ module.exports = {
         test: /\.bin$|\.exe$/,
         use: [{
           loader: 'file-loader',
-          options: {name: path.resolve('app', '[path][name].[ext]')}
+          options: {name: path.resolve('app', '[path][name].[ext]')} // hack to get executables from actual source location
         }]
       }
     ],
