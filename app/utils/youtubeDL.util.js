@@ -1,16 +1,16 @@
-import youtubedlMacPath from '../assets/binaries/youtube-dl.bin';
-import youtubedlWinPath from '../assets/binaries/youtube-dl.exe';
+import youtubeDLMacPath from '../assets/binaries/youtube-dl.bin'; // this only gets url of file and not the binary
+import youtubeDLWinPath from '../assets/binaries/youtube-dl.exe';
 import {getExecutableRealFilePath, getCurrentOS} from './helper.util';
-import {executeProcess} from './process.util';
+import {getProcessExecutor} from './process.util';
 
-export const getYoutubeDl = () => {
+export const getYoutubeDL = () => {
   const ytdlBinaryMap = {
-    'MAC': getExecutableRealFilePath(youtubedlMacPath),
-    'WINDOWS': getExecutableRealFilePath(youtubedlWinPath),
-    'LINUX': getExecutableRealFilePath(youtubedlMacPath)
+    'MAC': getExecutableRealFilePath(youtubeDLMacPath),
+    'WINDOWS': getExecutableRealFilePath(youtubeDLWinPath),
+    'LINUX': getExecutableRealFilePath(youtubeDLMacPath)
   };
   const selectedYTDL = ytdlBinaryMap[getCurrentOS()] || null;
-  return selectedYTDL;
+  return getProcessExecutor(selectedYTDL);
 };
 
-export const getYTDLVersion = () => executeProcess(getYoutubeDl(), ['--version']);
+export const getYTDLVersion = () => getYoutubeDL().execute('--version');
