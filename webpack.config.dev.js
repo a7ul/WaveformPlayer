@@ -49,14 +49,14 @@ module.exports = {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
         use: [{
           loader: 'file-loader',
-          options: {name: 'bundle/assets/[hash].[ext]'}
+          options: {name: 'assets/[hash].[ext]'}
         }]
       },
       {
         test: /\.bin$|\.exe$/,
         use: [{
           loader: 'file-loader',
-          options: {name: 'bundle/binaries/[name].[ext]'}
+          options: {name: path.resolve('app', '[path][name].[ext]')}
         }]
       }
     ],
@@ -71,7 +71,7 @@ module.exports = {
   target: 'electron',
   devServer: {
     port: devServerPort,
-    quiet: true, // This is because we are using another friendlyErrorMessagePlugin 
+    quiet: true, // This is because we are using another friendlyErrorMessagePlugin
     contentBase: path.resolve(__dirname, 'bundle'),
     // match the output path
     publicPath: '/',
