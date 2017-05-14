@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var definePlugin = new webpack.DefinePlugin({
-  __DEV__: (process.env.NODE_ENV === 'development')
+  'process.env.NODE_ENV': JSON.stringify('production')
 });
 
 module.exports = {
@@ -37,9 +37,10 @@ module.exports = {
         }]
       }
     ],
+    noParse: [/ws\/lib/]
   },
   plugins: [
     definePlugin
   ],
-  target: 'web'
+  target: 'electron'
 };

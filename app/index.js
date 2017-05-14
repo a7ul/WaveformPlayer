@@ -1,9 +1,14 @@
+import Router from './routes/router';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppPage from './App.page';
+import {Provider} from 'react-redux';
+import {initStore} from './state/store';
 
+const store = initStore({});
 
 ReactDOM.render(
-  <AppPage/>,
+  <Provider store={store}>
+    <Router />
+  </Provider>,
   document.getElementById('root')
 );
