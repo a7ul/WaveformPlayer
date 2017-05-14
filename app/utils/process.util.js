@@ -4,7 +4,7 @@ import childProcess from 'child_process';
 // getProcessExecutor('./test.sh').execute('--param1','abc');  will execute ./test.sh --param1 abc
 // getProcessExecutor('./test.sh').binaryPath;  will give ./test.sh
 
-export const getProcessExecutor = (binaryPath) => (
+export const getProcessExecutor = (binaryPath = null) => (
   {
     binaryPath,
     execute: (...commands) => {
