@@ -1,11 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
+var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 var definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify('development')
 });
 var globalHMRPlugin = new webpack.HotModuleReplacementPlugin();
 var readableHMRUpdatesPlugin = new webpack.NamedModulesPlugin();
-
+var friendlyErrorMessagePlugin = new FriendlyErrorsWebpackPlugin();
 var devServerPort = 8090;
 
 module.exports = {
@@ -48,7 +49,14 @@ module.exports = {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
         use: [{
           loader: 'file-loader',
-          options: {name: 'bundle/assets/[hash].[ext]'}
+          options: {name: 'assets/[hash].[ext]'}
+        }]
+      },
+      {
+        test: /\.bin$|\.exe$/,
+        use: [{
+          loader: 'file-loader',
+          options: {name: path.resolve('app', '[path][name].[ext]')} // hack to get executables from actual source location
         }]
       }
     ],
@@ -57,11 +65,13 @@ module.exports = {
   plugins: [
     definePlugin,
     globalHMRPlugin,
-    readableHMRUpdatesPlugin
+    readableHMRUpdatesPlugin,
+    friendlyErrorMessagePlugin
   ],
   target: 'electron',
   devServer: {
     port: devServerPort,
+    quiet: true, // This is because we are using another friendlyErrorMessagePlugin
     contentBase: path.resolve(__dirname, 'bundle'),
     // match the output path
     publicPath: '/',

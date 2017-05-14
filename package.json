@@ -7,8 +7,8 @@
     "seperator:main": "======================== MAIN SCRIPTS ==========================================",
     "start": "concurrently --kill-others 'npm run compile:dev' 'npm run electron:dev' 'npm run reduxdevtools:dev'",
     "build": "npm run compile:prod && npm run electron:prod",
-    "package:win": "npm run compile:prod && electron-packager ./ YPlayer --platform=win32 --arch=x64 --out ~/Desktop/YPlayer-Windowsx86",
-    "package:mac": "npm run compile:prod && electron-packager ./ YPlayer --platform=darwin --arch=x64 --out ~/Desktop/YPlayer-Macx86",
+    "package:win": "npm run compile:prod && electron-packager ./ YPlayer --ignore node_modules --platform=win32 --arch=x64 --out ~/Desktop/YPlayer-Windowsx86",
+    "package:mac": "npm run compile:prod && electron-packager ./ YPlayer --ignore node_modules --platform=darwin --arch=x64 --out ~/Desktop/YPlayer-Macx86",
     "seperator:test": "======================== TEST AND LINT SCRIPTS =================================",
     "test": "NODE_ENV='test' jest --verbose --forceExit",
     "test:watch": "npm run test -- --watch",
@@ -30,6 +30,10 @@
     "compile:prod"
   ],
   "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "\\.(css|less|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|bin|exe)$": "<rootDir>/helpers/custom-file-transformer.js"
+    },
     "cacheDirectory": "./cache",
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "coverageThreshold": {
@@ -57,14 +61,17 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^7.0.0-alpha.9",
     "concurrently": "^3.4.0",
+    "devtron": "^1.4.0",
     "electron-packager": "^8.7.0",
     "enzyme": "^2.8.2",
     "escope": "^3.6.0",
     "eslint": "^4.0.0-alpha.2",
     "eslint-plugin-react": "^7.0.0-rc.1",
     "file-loader": "0.11.1",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "jest": "^20.0.1",
     "jest-enzyme": "^3.1.0",
+    "mock-os": "^0.0.1",
     "pre-push": "^0.1.1",
     "prepush": "^3.1.11",
     "react-addons-test-utils": "^16.0.0-alpha.3",

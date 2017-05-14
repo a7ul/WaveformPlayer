@@ -33,7 +33,14 @@ module.exports = {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
         use: [{
           loader: 'file-loader',
-          options: {name: 'bundle/assets/[hash].[ext]'}
+          options: {name: 'assets/[hash].[ext]'}
+        }]
+      },
+      {
+        test: /\.bin$|\.exe$/,
+        use: [{
+          loader: 'file-loader',
+          options: {name: 'binaries/[name].[ext]'}
         }]
       }
     ],

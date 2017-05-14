@@ -13,14 +13,13 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({width: 800, height: 600});
   // and load the index.html of the app.
   if (process.env.NODE_ENV === 'development') {
+    require('devtron').install();
     const port = require('./webpack.config.dev').devServer.port;
     mainWindow.loadURL(`http://localhost:${port}/`);
     mainWindow.webContents.openDevTools();
   } else {
     mainWindow.loadURL('file://' + __dirname + '/index.html');
   }
-
-  // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
