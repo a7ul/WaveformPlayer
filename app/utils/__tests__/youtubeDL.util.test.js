@@ -15,6 +15,7 @@ describe('youtubedl utility', () => {
   afterAll(() => {
     process.env.NODE_ENV = 'test';
     mockOS.restore();
+    jest.unmock('../process.util');
   });
 
   it('getYoutubeDL : loads correct youtube-dl on MAC', () => {
