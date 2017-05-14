@@ -1,11 +1,16 @@
 import path from 'path';
 import os from 'os';
+import result from 'lodash/result';
 
 export const getExecutableRealFilePath = (webpackFilePath) => {
   if (process.env.NODE_ENV === 'development') {
     return  webpackFilePath;
   }
-  return path.join(path.dirname(window.location.pathname), 'bundle', webpackFilePath); // hack to run executables from bundled location
+  let getDirname = path.dirname;
+  if (getCurrentOS() === 'WINDOWS') {
+    getDirname = path.win32.dirname;
+  }
+  return path.join(getDirname(result(global, 'window.location.pathname')), 'bundle', webpackFilePath); // hack to run executables from bundled location
 };
 
 export const getCurrentOS = () => {

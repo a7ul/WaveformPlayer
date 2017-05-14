@@ -69,6 +69,7 @@
     "module": false,
     "Promise": false,
     "beforeAll": false,
+    "afterAll": false,
     "process": false,
     "__dirname": false
   }
