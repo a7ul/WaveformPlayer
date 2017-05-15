@@ -4,6 +4,7 @@ import noop from 'lodash/noop';
 // example usage:
 // getProcessExecutor('./test.sh').execute('--param1','abc');  will execute ./test.sh --param1 abc
 // getProcessExecutor('./test.sh').binaryPath;  will give ./test.sh
+// getProcessExecutor('./test.sh',console.log).execute('--p','abc');  will console.log all outputs from ./test.sh --p abc
 
 export const getProcessExecutor = (binaryPath = null, onDataHandler = noop) => (
   {
