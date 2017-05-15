@@ -17,6 +17,7 @@ describe('process utility', () => {
 
   it('getProcessExecutor : returns a executor and file path passed ', () => {
     const pexecutor = new ProcessExecutor('./test.sh');
+    expect(new ProcessExecutor()).toBeInstanceOf(ProcessExecutor);
     expect(pexecutor).toBeInstanceOf(ProcessExecutor);
     expect(pexecutor.binaryPath).toEqual('./test.sh');
     expect(typeof pexecutor.execute).toBe('function');
