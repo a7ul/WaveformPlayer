@@ -51,13 +51,6 @@ module.exports = {
           loader: 'file-loader',
           options: {name: 'assets/[hash].[ext]'}
         }]
-      },
-      {
-        test: /\.bin$|\.exe$/,
-        use: [{
-          loader: 'file-loader',
-          options: {name: path.resolve('app', '[path][name].[ext]')} // hack to get executables from actual source location
-        }]
       }
     ],
     noParse: [/ws\/lib/]
