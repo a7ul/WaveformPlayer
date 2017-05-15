@@ -9,3 +9,4 @@ npm-debug.log
 releases
 coverage
 .nyc_output
+app/assets/binaries/*
