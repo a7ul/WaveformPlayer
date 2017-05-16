@@ -1,4 +1,4 @@
-import {getBinaryDirectory, getCurrentOS, getOptimalMaxProcesses} from '../helper.util';
+import {getBinaryDirectory, getCurrentOS, getOptimalMaxProcesses, setPathEnvironmentVariable} from '../helper.util';
 import mockOS from 'mock-os';
 import path from 'path';
 
@@ -70,4 +70,13 @@ describe('helper utility', () => {
     expect(getOptimalMaxProcesses()).toBe(4);
   });
 
+  it('setPathEnvironmentVariable: on Mac - sets path for the electron to include the binary directory onto path', () => {
+    mockOS({'platform': 'darwin'});
+    const beforePath = String(process.env.PATH);
+    setPathEnvironmentVariable();
+    const expectedAterPath =  getBinaryDirectory() + ':' + beforePath;
+    expect(process.env.PATH).toBe(expectedAterPath);
+    process.env.PATH = beforePath;
+    mockOS.restore();
+  });
 });
