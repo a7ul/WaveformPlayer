@@ -1,6 +1,6 @@
 jest.mock('child_process', () => ({
   exec: jest.fn((commandString, cb) => {
-    if (commandString === null) { // to test error case below
+    if (!commandString || commandString === 'error test') { // to test error case below
       return cb(new Error('some error occured'));
     }
     cb(null, 'test');
@@ -23,11 +23,13 @@ describe('process utility', () => {
     expect(typeof pexecutor.execute).toBe('function');
 
     const error = new Error('No executable specified');
+    const childProcessError = new Error('some error occured');
     const executable = 'test.sh';
     return Promise.all([
       expect(new ProcessExecutor(executable).execute('-v')).resolves.toEqual('test'),
       expect(childProcess.exec.mock.calls[0][0]).toBe('test.sh -v'), // to test that exec was called with 'test.sh -v'
-      expect(new ProcessExecutor(null).execute('-somearg')).rejects.toEqual(error)
+      expect(new ProcessExecutor(null).execute('-somearg')).rejects.toEqual(error),
+      expect(new ProcessExecutor('error').execute('test')).rejects.toEqual(childProcessError)
     ]);
   });
 
