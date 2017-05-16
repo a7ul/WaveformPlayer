@@ -1,9 +1,9 @@
-import {getExecutableFilePath} from './helper.util';
+import {getBinaryFileName} from './helper.util';
 import {ProcessExecutor} from './process.util';
 
 export const getYoutubeDL = (onDataHandler) => {
-  const ytdlBinaryFile = getExecutableFilePath('youtube-dl');
-  return new ProcessExecutor(ytdlBinaryFile, onDataHandler);
+  const ytdlBinary = getBinaryFileName('youtube-dl');
+  return new ProcessExecutor(ytdlBinary, onDataHandler);
 };
 
 export const getYTDLVersion = () => getYoutubeDL().execute('--version');
