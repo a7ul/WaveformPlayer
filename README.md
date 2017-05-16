@@ -7,19 +7,31 @@
 - `git clone https://github.com/master-atul/YPlayer.git`
 - `cd YPlayer`
 - `yarn`
-- After this download the assets bundle from `https://github.com/master-atul/YPlayer/releases/download/assets/assets.zip`
-- unzip assets.zip and extract it into /app/assets folder.
+- After this download the assets bundle from `https://github.com/master-atul/YPlayer/releases/download/binaries/binaries.tar.gz`
+- extract `binaries.tar.gz` into /app/assets folder.
 You should now get something similar to
 ```
 ├── app
-│   ├── assets
-│   │   └── binaries
-│   │       ├── linux
-│   │       │   └── youtube-dl.bin
-│   │       ├── mac
-│   │       │   └── youtube-dl.bin
-│   │       └── windows
-│   │           └── youtube-dl.exe
+│   ├── assets
+│   │   ├── binaries
+│   │   │   ├── linux
+│   │   │   │   ├── AtomicParsley
+│   │   │   │   ├── ffmpeg
+│   │   │   │   ├── ffprobe
+│   │   │   │   ├── ffserver
+│   │   │   │   └── youtube-dl
+│   │   │   ├── mac
+│   │   │   │   ├── AtomicParsley
+│   │   │   │   ├── ffmpeg
+│   │   │   │   ├── ffprobe
+│   │   │   │   ├── ffserver
+│   │   │   │   └── youtube-dl
+│   │   │   └── windows
+│   │   │       ├── AtomicParsley.exe
+│   │   │       ├── ffmpeg.exe
+│   │   │       ├── ffplay.exe
+│   │   │       ├── ffprobe.exe
+│   │   │       └── youtube-dl.exe
 ```
 - Then run the below commands as per requirements
 
