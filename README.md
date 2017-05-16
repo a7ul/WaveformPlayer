@@ -70,4 +70,4 @@ Currently whenever you push three types of tests run to make sure you are pushin
 
 ## License
 
-[MIT (Public Domain)](LICENSE.md)
+[WTFPL](LICENSE.md)
