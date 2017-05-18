@@ -1,7 +1,7 @@
 jest.mock('child_process', () => ({
-  execFile: jest.fn((executableFilePath, commandsarray, cb) => {
-    if (executableFilePath === null) { // to test error case below
-      return cb(new Error('some error'));
+  exec: jest.fn((commandString, cb) => {
+    if (!commandString || commandString === 'error test') { // to test error case below
+      return cb(new Error('some error occured'));
     }
     cb(null, 'test');
   })
@@ -16,19 +16,20 @@ describe('process utility', () => {
   });
 
   it('getProcessExecutor : returns a executor and file path passed ', () => {
-    const pexecutor = new ProcessExecutor('./test.sh');
+    const pexecutor = new ProcessExecutor('test.sh');
     expect(new ProcessExecutor()).toBeInstanceOf(ProcessExecutor);
     expect(pexecutor).toBeInstanceOf(ProcessExecutor);
-    expect(pexecutor.binaryPath).toEqual('./test.sh');
+    expect(pexecutor.binaryFileName).toEqual('test.sh');
     expect(typeof pexecutor.execute).toBe('function');
 
-    const error = new Error('some error');
-    const executable = './test.sh';
+    const error = new Error('No executable specified');
+    const childProcessError = new Error('some error occured');
+    const executable = 'test.sh';
     return Promise.all([
       expect(new ProcessExecutor(executable).execute('-v')).resolves.toEqual('test'),
-      expect(childProcess.execFile.mock.calls[0][0]).toBe('./test.sh'), // to test that execFile was called with './test.sh' as first arg
-      expect(childProcess.execFile.mock.calls[0][1]).toEqual(['-v']),
-      expect(new ProcessExecutor(null).execute('-somearg')).rejects.toEqual(error)
+      expect(childProcess.exec.mock.calls[0][0]).toBe('test.sh -v'), // to test that exec was called with 'test.sh -v'
+      expect(new ProcessExecutor(null).execute('-somearg')).rejects.toEqual(error),
+      expect(new ProcessExecutor('error').execute('test')).rejects.toEqual(childProcessError)
     ]);
   });
 

@@ -1,4 +1,3 @@
-import path from 'path';
 import mockOS from 'mock-os';
 import {getYoutubeDL, getYTDLVersion, getVideoMetaData} from '../youtubeDL.util';
 jest.mock('../process.util');
@@ -14,7 +13,7 @@ describe('youtubedl utility', () => {
     mockOS({'platform': 'darwin'});
     process.env.NODE_ENV = 'development';
     expect(getYoutubeDL()).toBeInstanceOf(ProcessExecutor);
-    expect(getYoutubeDL().binaryPath).toEqual(path.join(__dirname, '../../assets/binaries/mac/youtube-dl.bin'));
+    expect(getYoutubeDL().binaryFileName).toEqual('youtube-dl');
     process.env.NODE_ENV = 'test';
     mockOS.restore();
   });

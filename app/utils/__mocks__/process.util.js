@@ -3,8 +3,8 @@ import noop from 'lodash/noop';
 export const executeSpy = jest.fn((...commands) => Promise.resolve({commands}));
 
 export class ProcessExecutor {
-  constructor (binaryPath = null, onDataHandler = noop) {
-    this.binaryPath = binaryPath;
+  constructor (binaryFileName = null, onDataHandler = noop) {
+    this.binaryFileName = binaryFileName;
     this.onDataHandler = onDataHandler;
   }
   execute (...commands) {
