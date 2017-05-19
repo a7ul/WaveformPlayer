@@ -8,7 +8,8 @@ import noop from 'lodash/noop';
 export class ProcessExecutor {
   constructor (binaryFileName = null, onDataHandler = noop) {
     this.binaryFileName = binaryFileName;
-    this.onDataHandler = onDataHandler;
+    this.onDataHandler = onDataHandler; // You can pass this to attach a on Data listener.
+    this.process = null; // This will give u a handle on the process once you call execute
   }
   execute (...commands) {
     const vm = this;
@@ -18,13 +19,13 @@ export class ProcessExecutor {
       }
       const completeCommand = [vm.binaryFileName, ...commands].join(' ');
       console.log('command:', completeCommand);
-      const cprocess = childProcess.exec(completeCommand, (error, stdout) => {
+      vm.process = childProcess.exec(completeCommand, (error, stdout) => {
         if (error) {
           return reject(error);
         }
         resolve(stdout);
       });
-      cprocess.stdout.on('data', vm.onDataHandler);
+      vm.process.stdout.on('data', vm.onDataHandler);
     });
   }
 }
