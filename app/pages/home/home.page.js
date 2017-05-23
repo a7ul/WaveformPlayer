@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PlayerView from '../../components/playerView/PlayerView.component';
+import PlayerView from '../../components/PlayerView/PlayerView.component';
 import {getVideoMetaData} from '../../utils/youtubeDL.util';
 
 class HomePage extends Component {

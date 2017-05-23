@@ -3,7 +3,7 @@ import createHistory from 'history/createBrowserHistory';
 import {Route} from 'react-router';
 import {ConnectedRouter, routerMiddleware, push, goBack} from 'react-router-redux';
 
-import Home from '../pages/home/home.page';
+import Home from '../pages/Home/Home.page';
 
 const history = createHistory();
 

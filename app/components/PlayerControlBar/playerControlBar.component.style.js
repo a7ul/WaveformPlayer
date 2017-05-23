@@ -2,11 +2,11 @@ export default {
   container: {
     background: 'black',
     color: 'white',
-    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '10px'
+    padding: '10px',
+    textAlign: 'center'
   },
   item: {
     flex: 'auto'

@@ -12,15 +12,16 @@ const getPath = (iconName) => {
   }
 };
 
-const Icon = ({size = '20', name}) => (
-  <svg width={size} height={size} viewBox='0 0 1024 1024'>
+const Icon = ({size = '20', name, fill = '#FFFFFF'}) => (
+  <svg width={size} height={size} viewBox='0 0 1024 1024' fill={fill}>
     <path d={getPath(name)} />
   </svg>
 );
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.number
+  size: PropTypes.number,
+  fill: PropTypes.string
 };
 
 export default Icon;

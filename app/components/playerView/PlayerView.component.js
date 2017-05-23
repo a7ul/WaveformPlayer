@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PlayerControlBar from '../playerControlBar/PlayerControlBar.component';
+import PlayerControlBar from '../PlayerControlBar/PlayerControlBar.component';
 import styles from './PlayerView.style';
 
 class PlayerView extends Component {
