@@ -5,8 +5,9 @@
   "main": "electron_main.js",
   "scripts": {
     "start": "node ./scripts/terminal/terminal.js && NODE_ENV='development' electron .",
-    "packager": "webpack-dev-server --config ./scripts/webpack.config.js --hot --inline",
-    "build": "node ./scripts/copyIndex.js && webpack --config ./scripts/webpack.config.js -p"
+    "start:prod": "npm run build:src && NODE_ENV='production' electron .",
+    "buildServer": "webpack-dev-server --config ./scripts/webpack.config.js --hot --inline",
+    "build:src": "node ./scripts/copyIndex.js && webpack --config ./scripts/webpack.config.js -p"
   },
   "repository": "https://github.com/master-atul/YPlayer",
   "keywords": [
@@ -15,10 +16,17 @@
   "author": "master-atul",
   "license": "CC0-1.0",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
     "electron": "~1.7.8",
+    "eslint": "^4.13.1",
+    "eslint-plugin-react": "^7.5.1",
     "express": "^4.16.2",
+    "file-loader": "^1.1.5",
+    "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   },
