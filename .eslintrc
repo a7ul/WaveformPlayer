@@ -13,7 +13,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:require-path-exists/recommended"
+  ],
+  "plugins": [
+    "require-path-exists"
   ],
   "rules": {
     "semi": 2,
@@ -36,6 +40,9 @@
       "after": true
     }],
     "no-var": ["error"],
-    "arrow-spacing": ["error", { "before": true, "after": true }]
+    "arrow-spacing": ["error", {
+      "before": true,
+      "after": true
+    }]
   }
 }

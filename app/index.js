@@ -1,9 +1,18 @@
+import './styles/reset.css';
 import React from 'react';
-import styles from './style.css';
+import {Provider} from 'react-redux';
+import Router from './router';
+import {initStore} from './store/store';
+
+const store = initStore({});
 
 class App extends React.Component {
   render(){
-    return (<div className={styles.app}>Hi</div>);
+    return (
+      <Provider store={store}>
+        <Router />
+      </Provider>
+    );
   }
 }
 
