@@ -8,3 +8,11 @@
   min-height: 100vh;
   min-width: 100%;
 }
+
+.clickable {
+
+}
+
+.clickable:hover {
+  cursor: pointer;
+}

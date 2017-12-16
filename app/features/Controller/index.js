@@ -1,26 +1,41 @@
 import React from 'react';
 import styles from './style.css';
-import Icon from '../Shared/Icon';
+import PrimaryControls from './components/PrimaryControls';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import * as actions from './redux';
 
 class Controller extends React.Component {
   render () {
+    const {togglePlay, isPlaying, onNext, onPrev} = this.props;
     return (
       <div className={styles.controller}>
-        <div><Icon name="play_arrow" /></div>
-        <div><Icon name="pause" /></div>
-        <div><Icon name="skip_previous" /></div>
-        <div><Icon name="skip_next" /></div>
+        <PrimaryControls onPlayToggle={togglePlay} isPlaying={isPlaying} onNext={onNext} onPrev={onPrev}/>
       </div>
     );
   }
 }
 
 Controller.defaultProps = {
-
+  togglePlay: () => {},
+  isPlaying: false,
+  onNext: () => {},
+  onPrev: () => {}
 };
 
 Controller.propTypes = {
-
+  togglePlay: PropTypes.func,
+  isPlaying: PropTypes.bool,
+  onNext: PropTypes.func,
+  onPrev: PropTypes.func
 };
 
-export default Controller;
+const mapStateToProps = (state) => ({
+  isPlaying: state.controller.isPlaying
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  togglePlay: () => dispatch(actions.togglePlay())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Controller);
