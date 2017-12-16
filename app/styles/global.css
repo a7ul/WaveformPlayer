@@ -1,8 +1,10 @@
 /* @value constants: "./constants.css";
 @value primaryColor from constants; */
 /* or */
+@import "./reset.css";
 @value primaryColor from "./constants.css";
 
-.test {
-  background: primaryColor;
+:global(.fullview) {
+  min-height: 100vh;
+  min-width: 100%;
 }

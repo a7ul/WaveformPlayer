@@ -1,9 +1,8 @@
 import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
+import {routerReducer as router} from 'react-router-redux';
+import {reducer as controller} from '../features/Controller/redux';
 
 export default combineReducers({
-  test: (state = {}) => {
-    return state;
-  },
-  router: routerReducer
+  controller,
+  router
 });

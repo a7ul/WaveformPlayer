@@ -1,0 +1,5 @@
+.controller {
+  padding: 5px;
+  display: flex;
+  flex: 1
+}

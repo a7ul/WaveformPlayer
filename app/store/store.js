@@ -5,7 +5,7 @@ import {reduxRouterMiddleware} from '../router';
 
 const enhancerList = [];
 
-if (process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   window.__REDUX_DEVTOOLS_EXTENSION__ && enhancerList.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
