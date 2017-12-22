@@ -1,8 +1,9 @@
-const PLAY_TOGGLE = 'CONTROLLER/PLAY_TOGGLE';
+const PLAY_STATUS = 'CONTROLLER/PLAY_STATUS';
 
 // Actions
-export const togglePlay = () => ({
-  type: PLAY_TOGGLE
+export const setPlayStatus = (playStatus) => ({
+  type: PLAY_STATUS,
+  payload: playStatus
 });
 
 // Initial State
@@ -14,8 +15,8 @@ const defaultState = {
 // Reducers
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case PLAY_TOGGLE: {
-      return {...state, isPlaying: !state.isPlaying};
+    case PLAY_STATUS: {
+      return {...state, isPlaying: action.payload};
     }
     default: {
       return state;

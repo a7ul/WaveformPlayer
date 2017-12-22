@@ -3,6 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import Router from './router';
 import {initStore} from './store/store';
+import './utils/youtubeDL';
 
 const store = initStore({});
 

@@ -4,27 +4,33 @@ import PrimaryControls from './components/PrimaryControls';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from './redux';
+import {playSong} from '../../utils/audio';
 
 class Controller extends React.Component {
+  togglePlay = () => {
+    const {setPlayStatus, isPlaying} = this.props;
+    setPlayStatus(!isPlaying);
+  }
+
   render () {
-    const {togglePlay, isPlaying, onNext, onPrev} = this.props;
+    const {isPlaying, onNext, onPrev} = this.props;
     return (
       <div className={styles.controller}>
-        <PrimaryControls onPlayToggle={togglePlay} isPlaying={isPlaying} onNext={onNext} onPrev={onPrev}/>
+        <PrimaryControls onPlayToggle={this.togglePlay} isPlaying={isPlaying} onNext={onNext} onPrev={onPrev}/>
       </div>
     );
   }
 }
 
 Controller.defaultProps = {
-  togglePlay: () => {},
+  setPlayStatus: () => {},
   isPlaying: false,
   onNext: () => {},
   onPrev: () => {}
 };
 
 Controller.propTypes = {
-  togglePlay: PropTypes.func,
+  setPlayStatus: PropTypes.func,
   isPlaying: PropTypes.bool,
   onNext: PropTypes.func,
   onPrev: PropTypes.func
@@ -35,7 +41,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  togglePlay: () => dispatch(actions.togglePlay())
+  setPlayStatus: (status) => dispatch(actions.setPlayStatus(status)),
+  onNext: () => {
+    playSong('/Users/atulr/Projects/Hobby/yplayer/app/features/Controller/stereo.mp3');
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Controller);

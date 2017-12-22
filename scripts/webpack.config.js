@@ -11,13 +11,14 @@ module.exports = {
     compress: true,
     port: 9000
   },
+  target: 'electron',
   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /(node_modules|bower_components)/,
       loader: 'babel-loader'
     }, {
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(png|jpg|gif|exe|bin)$/,
       loader: 'file-loader',
       options: {
         name: '[path][name].[ext]'
@@ -25,16 +26,16 @@ module.exports = {
     }, {
       test: /\.css$/,
       use: [{
-          loader: 'style-loader',
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            localIdentName: '[name]__[local]___[hash:base64:5]',
-            modules: true
-          }
+        loader: 'style-loader'
+      },
+      {
+        loader: 'css-loader',
+        options: {
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+          modules: true
         }
-      ],
+      }
+      ]
     }]
   }
 };
