@@ -1,20 +1,18 @@
-import './styles/global.css';
 import React from 'react';
 import {Provider} from 'react-redux';
-import Router from './router';
 import {initStore} from './store/store';
-import './utils/youtubeDL';
+import App from './AppContainer';
 
 const store = initStore({});
 
-class App extends React.Component {
+class YPlayer extends React.Component {
   render () {
     return (
       <Provider store={store}>
-        <Router />
+        <App />
       </Provider>
     );
   }
 }
 
-export default App;
+export default YPlayer;

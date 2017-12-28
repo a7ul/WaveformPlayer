@@ -1,6 +1,13 @@
 import {BINARIES} from './platform';
 import {execFile} from './common';
 
-execFile(BINARIES.YTDL, ['--version'], (message) => console.log('MSG', message))
-  .then((final) => console.log('final', final))
-  .catch((err) => console.log(err, 'err'));
+const defaultParams = [
+  '--ffmpeg-location', BINARIES.FFMPEG,
+  '--prefer-ffmpeg',
+  '--geo-bypass'
+];
+
+export const getYTDLVersion = () => {
+  const params = [...defaultParams, '--version'];
+  return execFile(BINARIES.YTDL, params);
+};

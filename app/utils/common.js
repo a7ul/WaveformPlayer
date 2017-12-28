@@ -2,6 +2,8 @@ const remote = require('electron').remote;
 const fs = remote.require('fs');
 import childProcess from 'child_process';
 
+export const noop = () => {};
+
 export function readFileToArrayBuffer (absolutePath) {
   return new Promise((resolve, reject) => {
     fs.readFile(absolutePath, (err, data) => {
@@ -13,7 +15,8 @@ export function readFileToArrayBuffer (absolutePath) {
   });
 }
 
-export function execFile (binaryFilePath, commands, onProgress) {
+export function execFile (binaryFilePath, commands, onProgress = noop) {
+  console.log(binaryFilePath, ...commands);
   return new Promise((resolve, reject) => {
     const cprocess = childProcess.execFile(binaryFilePath, [...commands], {windowsHide: true},
       (error, stdout) => {

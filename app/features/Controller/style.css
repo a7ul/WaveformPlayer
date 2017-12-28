@@ -1,7 +1,8 @@
 
 .controller {
   display: flex;
-  flex: 1
+  align-self: stretch;
+  flex-direction: row;
 }
 
 .button {
