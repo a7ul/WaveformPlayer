@@ -4,12 +4,32 @@ import PrimaryControls from './components/PrimaryControls';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from './redux';
-import {playSong} from '../../utils/audio';
+import {decodeAudio, MusicSource} from '../../utils/audio';
+import {readFileToArrayBuffer} from '../../utils/common';
+
+let mSource = null;
+readFileToArrayBuffer('/Users/atulr/Projects/Hobby/YPlayer/app/assets/songs/In The End (Official Video) - Linkin Park-eVTXPUF4Oz4.mp3')
+  .then(decodeAudio)
+  .then((audioBuffer) => {
+    mSource = new MusicSource(audioBuffer);
+    mSource.setOnTickHandler((d) => console.log('TICK', d));
+    console.log('Alldone');
+  });
+// .then(createAudioSourceNode).then(console.log).catch(console.log);
 
 class Controller extends React.Component {
   togglePlay = () => {
     const {setPlayStatus, isPlaying} = this.props;
     setPlayStatus(!isPlaying);
+    if (mSource) {
+      if (!isPlaying) {
+        mSource.play();
+        console.log('PLAYING');
+      } else {
+        mSource.pause();
+        console.log('PAUSE');
+      }
+    }
   }
 
   render () {
@@ -43,7 +63,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setPlayStatus: (status) => dispatch(actions.setPlayStatus(status)),
   onNext: () => {
-    playSong('/Users/atulr/Projects/Hobby/yplayer/app/features/Controller/stereo.mp3');
+    mSource.seek(mSource.playbackTime + 3);
+  },
+  onPrev: () => {
+    mSource.stop();
+    // mSource.seek(mSource.playbackTime - 3);
   }
 });
 
