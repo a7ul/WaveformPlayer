@@ -4539,6 +4539,10 @@ schema-utils@^0.3.0:
   dependencies:
     ajv "^5.0.0"
 
+seekable-timer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/seekable-timer/-/seekable-timer-1.0.1.tgz#c9e8f135dc76d93cf7857cdf4be4a48135143471"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"

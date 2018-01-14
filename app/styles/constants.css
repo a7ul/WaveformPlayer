@@ -1,2 +1,3 @@
 /*CSS Modules need the css class names to be camelCased*/
 @value primaryColor: blue;
+@value lightBGColor: white;

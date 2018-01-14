@@ -8,7 +8,7 @@ import {decodeAudio, MusicSource} from '../../utils/audio';
 import {readFileToArrayBuffer} from '../../utils/common';
 
 let mSource = null;
-readFileToArrayBuffer('/Users/atulr/Projects/Hobby/YPlayer/app/assets/songs/In The End (Official Video) - Linkin Park-eVTXPUF4Oz4.mp3')
+readFileToArrayBuffer('/Users/atulr/Music/iTunes/iTunes Media/Music/Evanescence/Unknown Album/Evanescence - Bring Me To Life.mp3')
   .then(decodeAudio)
   .then((audioBuffer) => {
     mSource = new MusicSource(audioBuffer);

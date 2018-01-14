@@ -5,8 +5,8 @@
 4. AudioSourceNode.start(0) to start the playback.
 5. Use the _audioCtx to resume and suspend all audioSourceNodes.
 */
-import {Timer, noop} from './common';
-
+import {noop} from './common';
+import Timer from 'seekable-timer';
 const _audioCtx = new AudioContext();
 const _speakerNode = _audioCtx.destination; // saving speaker node reference
 

@@ -10,8 +10,12 @@ const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600
+    height: 600,
+    show: false
   });
+  mainWindow.maximize();
+
+  mainWindow.show();
 
   if (process.env.NODE_ENV === 'production') {
     mainWindow.loadURL(url.format({
