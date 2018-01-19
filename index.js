@@ -4,6 +4,9 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from './app';
+import playerSDK from './app/utils/playerSDK';
+
+global.playerSDK = playerSDK; // setting a global sdk for use in third party plugins
 
 ReactDOM.render(
   <App />,

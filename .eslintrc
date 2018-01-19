@@ -14,11 +14,10 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:require-path-exists/recommended"
+    "plugin:react/recommended"
   ],
   "plugins": [
-    "require-path-exists"
+      "eslint-plugin-import"
   ],
   "rules": {
     "semi": 2,
@@ -82,7 +81,8 @@
     "no-useless-rename": 2,
     "no-unreachable": 2,
     "camelcase": 2,
-    "no-multiple-empty-lines": ["error", { "max": 1 }]
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "import/no-unresolved": [2, {caseSensitive: false, commonjs: true, ignore: ["node_modules"]}],
   },
   "globals": {
     "Promise": true,

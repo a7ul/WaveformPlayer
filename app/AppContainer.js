@@ -2,14 +2,9 @@ import './styles/global.css';
 import React from 'react';
 import Router from './router';
 import './utils/youtubeDL';
-import {findSoftwareVersion} from './features/Version/thunk';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
 class App extends React.Component {
-  componentWillMount () {
-    this.props.findSoftwareVersion();
-  }
   render () {
     return (
       <Router />
@@ -17,18 +12,12 @@ class App extends React.Component {
   }
 }
 
-App.defaultProps = {
-  findSoftwareVersion: () => {}
-};
+App.defaultProps = {};
 
-App.propTypes = {
-  findSoftwareVersion: PropTypes.func
-};
+App.propTypes = {};
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  findSoftwareVersion: () => dispatch(findSoftwareVersion())
-});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

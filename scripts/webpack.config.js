@@ -11,6 +11,12 @@ module.exports = {
     compress: true,
     port: 9000
   },
+  resolve: {
+    alias: {
+      'Utils': path.resolve(__dirname, '../app/utils/'),
+      'Styles': path.resolve(__dirname, '../app/styles/')
+    }
+  },
   target: 'electron',
   module: {
     loaders: [{

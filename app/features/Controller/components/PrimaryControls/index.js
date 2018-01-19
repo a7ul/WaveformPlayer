@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.css';
-import Icon from '../../../Shared/Icon';
+import Icon from '../../../../components/Icon';
 
 class PrimaryControls extends React.Component {
   render () {
