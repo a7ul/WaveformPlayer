@@ -1,7 +1,5 @@
-import './styles/global.css';
 import React from 'react';
-import Router from './router';
-import './utils/youtubeDL';
+import {Router} from './router';
 import {connect} from 'react-redux';
 
 class App extends React.Component {

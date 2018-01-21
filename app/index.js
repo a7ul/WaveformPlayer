@@ -2,6 +2,8 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {initStore} from './store/store';
 import App from './AppContainer';
+import ReactDOM from 'react-dom';
+import playerSDK from './utils/playerSDK';
 
 const store = initStore({});
 
@@ -15,4 +17,9 @@ class YPlayer extends React.Component {
   }
 }
 
-export default YPlayer;
+global.playerSDK = playerSDK; // setting a global sdk for use in third party plugins
+
+ReactDOM.render(
+  <YPlayer />,
+  document.getElementById('root')
+);

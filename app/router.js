@@ -6,11 +6,12 @@ import Home from './page/Home';
 
 const routeHistory = createHistory();
 
-export default class Router extends React.Component {
+export class Router extends React.Component {
   render () {
     return (
       <ConnectedRouter history={routeHistory}>
         <div className="fullview">
+          <Home />
           <Route exact path="/" component={Home}/>
           <Route exact path="/home" component={Home}/>
         </div>

@@ -11,5 +11,4 @@ const init = () => ({
   settings: [],
   centerStageView: VersionView
 });
-
 export default init;

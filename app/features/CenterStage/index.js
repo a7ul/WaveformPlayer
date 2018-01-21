@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.css';
+import * as styles from './style';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from './redux';
@@ -7,9 +7,9 @@ import * as actions from './redux';
 class CenterStage extends React.Component {
   render () {
     return (
-      <div className={styles.centerStage}>
+      <styles.Container>
         {this.props.children}
-      </div>
+      </styles.Container>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.css';
+import * as styles from './style.js';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from './redux';
@@ -7,7 +7,7 @@ import * as actions from './redux';
 class SideBar extends React.Component {
   render () {
     return (
-      <div className={styles.sidebar} />
+      <styles.Container />
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.css';
+import * as styles from './style';
 import PrimaryControls from './components/PrimaryControls';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -35,9 +35,9 @@ class Controller extends React.Component {
   render () {
     const {isPlaying, onNext, onPrev} = this.props;
     return (
-      <div className={styles.controller}>
+      <styles.Container>
         <PrimaryControls onPlayToggle={this.togglePlay} isPlaying={isPlaying} onNext={onNext} onPrev={onPrev}/>
-      </div>
+      </styles.Container>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './style.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {parseFFMPEGVersion} from '../util';
@@ -12,7 +11,7 @@ class Version extends React.Component {
   render () {
     const {ffmpegVersion, youtubeDLVersion, playerVersion} = this.props;
     return (
-      <div className={styles.version}>
+      <div>
         FFMPEG: {ffmpegVersion}
         YOUTUBEDL: {youtubeDLVersion}
         PLAYER: {playerVersion}

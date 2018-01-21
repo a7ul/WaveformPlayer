@@ -1,13 +1,9 @@
+import styled from 'styled-components';
 
-.controller {
+export const Container = styled.div`
   display: flex;
   align-self: stretch;
   flex-direction: row;
   min-height: 10vh;
   background: green;
-}
-
-.button {
-  composes: clickable from "../../styles/global.css";
-  padding: 3px;
-}
+`;

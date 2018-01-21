@@ -1,4 +1,4 @@
-const remote = require('electron').remote;
+import {remote} from 'electron';
 const fs = remote.require('fs');
 import childProcess from 'child_process';
 

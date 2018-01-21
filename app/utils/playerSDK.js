@@ -6,9 +6,6 @@ import * as parser from './parser';
 import * as platform from './platform';
 import * as youtubeDL from './youtubeDL';
 
-import constantStyles from '../styles/constants.css';
-import globalStyles from '../styles/global.css';
-
 module.exports = {
   utils: {
     audio,
@@ -18,9 +15,5 @@ module.exports = {
     parser,
     platform,
     youtubeDL
-  },
-  styles: {
-    constants: constantStyles,
-    global: globalStyles
   }
 };

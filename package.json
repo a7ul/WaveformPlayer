@@ -2,12 +2,9 @@
   "name": "yplayer",
   "version": "1.0.0",
   "description": "Y player",
-  "main": "electron_main.js",
+  "main": "electron.boot.js",
   "scripts": {
-    "start": "node ./scripts/terminal/terminal.js && NODE_ENV='development' electron .",
-    "start:prod": "npm run build:src && NODE_ENV='production' electron .",
-    "buildServer": "webpack-dev-server --config ./scripts/webpack.config.js --hot --inline",
-    "build:src": "node ./scripts/copyIndex.js && webpack --config ./scripts/webpack.config.js -p"
+    "start": "NODE_ENV='development' electron ."
   },
   "repository": "https://github.com/master-atul/YPlayer",
   "keywords": [
@@ -16,25 +13,18 @@
   "author": "master-atul",
   "license": "CC0-1.0",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.3",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "css-loader": "^0.28.7",
     "electron": "~1.7.8",
     "electron-devtools-installer": "^2.2.1",
     "eslint": "^4.13.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.5.1",
-    "file-loader": "^1.1.5",
-    "redux-devtools": "^3.4.1",
-    "style-loader": "^0.19.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "redux-devtools": "^3.4.1"
   },
   "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -45,6 +35,7 @@
     "redux-thunk": "^2.2.0",
     "seekable-timer": "^1.0.1",
     "shelljs": "^0.7.8",
+    "styled-components": "^2.4.0",
     "winston": "^2.4.0"
   }
 }

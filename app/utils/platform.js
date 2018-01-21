@@ -1,5 +1,5 @@
 import os from 'os';
-
+import path from 'path';
 export const currentOS = String(os.type()).toUpperCase(); // one of LINUX, DARWIN, WINDOWS_NT
 
 const BINARY_DIR = {
@@ -15,6 +15,6 @@ const BINARY_EXT = {
 };
 
 export const BINARIES = {
-  YTDL: require(`../assets/binaries/${BINARY_DIR[currentOS]}/youtube-dl${BINARY_EXT[currentOS]}`),
-  FFMPEG: require(`../assets/binaries/${BINARY_DIR[currentOS]}/ffmpeg${BINARY_EXT[currentOS]}`)
+  YTDL: path.resolve(__dirname, `../assets/binaries/${BINARY_DIR[currentOS]}/youtube-dl${BINARY_EXT[currentOS]}`),
+  FFMPEG: path.resolve(__dirname, `../assets/binaries/${BINARY_DIR[currentOS]}/ffmpeg${BINARY_EXT[currentOS]}`)
 };

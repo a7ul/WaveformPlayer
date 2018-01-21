@@ -18,22 +18,15 @@ const createWindow = () => {
 
   mainWindow.show();
 
-  if (process.env.NODE_ENV === 'production') {
-    mainWindow.loadURL(url.format({
-      pathname: path.join(__dirname, 'build', 'index.html'),
-      protocol: 'file:',
-      slashes: true
-    }));
-  } else {
-    const webPackConfig = require('./scripts/webpack.config');
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
+
+  if (process.env.NODE_ENV === 'development') {
     const installReactReduxDevTools = require('./scripts/installDevtools');
     installReactReduxDevTools().then(() => {
-      mainWindow.loadURL(url.format({
-        pathname: `localhost:${webPackConfig.devServer.port}`,
-        protocol: 'http:',
-        slashes: true
-      }));
-      // Open the DevTools.
       mainWindow.webContents.openDevTools();
     });
   }

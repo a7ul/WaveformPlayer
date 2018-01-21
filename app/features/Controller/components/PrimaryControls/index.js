@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.css';
+import * as styles from './style';
 import Icon from '../../../../components/Icon';
 
 class PrimaryControls extends React.Component {
   render () {
     const {onPlayToggle, isPlaying, onNext, onPrev} = this.props;
     return (
-      <div className={styles.primaryControls}>
-        <div onClick={onPlayToggle} className={styles.button}>
+      <styles.Container>
+        <styles.Button onClick={onPlayToggle}>
           {
             isPlaying
               ? <Icon name="pause" />
               : <Icon name="play_arrow" />
           }
-        </div>
-        <div onClick={onPrev} className={styles.button}><Icon name="skip_previous" /></div>
-        <div onClick={onNext} className={styles.button}><Icon name="skip_next" /></div>
-      </div>
+        </styles.Button>
+        <styles.Button onClick={onPrev}><Icon name="skip_previous" /></styles.Button>
+        <styles.Button onClick={onNext}><Icon name="skip_next" /></styles.Button>
+      </styles.Container>
     );
   }
 }

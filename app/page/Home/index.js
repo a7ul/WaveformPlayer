@@ -2,15 +2,15 @@ import React from 'react';
 import Controller from '../../features/Controller';
 // import Version from '../../features/Version';
 // import Playlist from '../../features/Playlist';
-import styles from './style.css';
 import SideBar from '../../features/SideBar';
 import CenterStage from '../../features/CenterStage';
+import * as styles from './style';
 
-class Home extends React.Component {
+export default class Home extends React.Component {
   render () {
     return (
-      <div className={styles.home}>
-        <div className={styles.exceptController}>
+      <styles.Container>
+        <styles.MainWrapper>
           <SideBar/>
           <CenterStage>
             <div>
@@ -18,11 +18,9 @@ class Home extends React.Component {
               <Playlist/>*/}
             </div>
           </CenterStage>
-        </div>
+        </styles.MainWrapper>
         <Controller/>
-      </div>
+      </styles.Container>
     );
   }
 }
-
-export default Home;

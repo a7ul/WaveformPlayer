@@ -1,10 +1,9 @@
-@value lightBGColor from '../../styles/constants.css';
+import styled from 'styled-components';
 
-.sidebar {
+export const Container = styled.div`
   display: flex;
   align-self: stretch;
   flex-direction: row;
   min-width: 20%;
-  background: lightBGColor;
   box-shadow: 0px -5px 20px 5px #e4e1e1;
-}
+`;
