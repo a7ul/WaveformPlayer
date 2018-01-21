@@ -1,12 +1,6 @@
-*.un~
-bundle/*
-!bundle/.gitkeep
-cache
 node_modules
-npm-debug.log
+.cache
+build/**/*
 .DS_Store
-.idea
-releases
-coverage
-.nyc_output
-app/assets/binaries/*
+app/assets/binaries/**/*.*
+*.log

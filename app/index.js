@@ -1,16 +1,25 @@
-import Router from './routes/router';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {initStore} from './state/store';
-import {setPathEnvironmentVariable} from './utils/helper.util';
+import {initStore} from './store/store';
+import App from './AppContainer';
+import ReactDOM from 'react-dom';
+import playerSDK from './utils/playerSDK';
 
-setPathEnvironmentVariable(); // This adds the binaries to the PATH
 const store = initStore({});
 
+class YPlayer extends React.Component {
+  render () {
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+  }
+}
+
+global.playerSDK = playerSDK; // setting a global sdk for use in third party plugins
+
 ReactDOM.render(
-  <Provider store={store}>
-    <Router />
-  </Provider>,
+  <YPlayer />,
   document.getElementById('root')
 );

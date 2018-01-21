@@ -1,31 +1,56 @@
-# "off" or 0 - turn the rule off
-# "warn" or 1 - turn the rule on as a warning(doesn’ t affect exit code)
-# "error" or 2 - turn the rule on as an error(exit code is 1 when triggered)
 {
   "parser": "babel-eslint",
-  "env": {
-    "browser": true
-  },
-  "plugins": [
-    "react"
-  ],
   "parserOptions": {
-    "sourceType": "module"
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+      "eslint-plugin-import"
+  ],
   "rules": {
+    "semi": 2,
+    "comma-dangle": ["error", "never"],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "brace-style": ["error", "1tbs"],
+    "comma-spacing": ["error", {
+      "before": false,
+      "after": true
+    }],
+    "func-call-spacing": ["error", "never"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "key-spacing": ["error", {
+      "beforeColon": false,
+      "afterColon": true
+    }],
+    "keyword-spacing": ["error", {
+      "before": true,
+      "after": true
+    }],
+    "no-var": ["error"],
+    "arrow-spacing": ["error", {
+      "before": true,
+      "after": true
+    }],
     "react/no-did-mount-set-state": 2,
     "react/no-did-update-set-state": 2,
     "react/no-direct-mutation-state": 2,
     "react/jsx-uses-vars": 2,
-    "no-unused-vars": ["error", {
+    "react/no-unused-prop-types": 2,
+    "no-unused-vars": [2, {
       "varsIgnorePattern": "React"
     }],
-    "comma-spacing": ["error", {
-     "before": false,
-     "after": true }],
-    "no-undef": 2,
-    "semi": 2,
     "react/prop-types": 2,
     "react/jsx-no-bind": 2,
     "react/jsx-no-duplicate-props": 2,
@@ -39,38 +64,28 @@
     "semi-spacing": 2,
     "no-unneeded-ternary": 2,
     "eqeqeq": 2,
-    "dot-location": 2,
+    "dot-location": [2, "property"],
     "no-extra-bind": 2,
-    "keyword-spacing": 2,
-    "key-spacing": 2,
-    "indent": ["error", 2],
     "react/jsx-indent": [2, 2],
-    "func-call-spacing": 2,
     "array-bracket-spacing": 2,
     "block-spacing": 2,
-    "brace-style": 2,
     "arrow-body-style": 2,
     "arrow-parens": 2,
-    "arrow-spacing": 2,
     "react/self-closing-comp": 2,
-    "jsx-quotes": ["error", "prefer-single"],
     "object-curly-spacing": 2,
-    "quotes": ["error", "single"],
-    "no-console": 0
+    "quotes": [2, "single"],
+    "no-console": 2,
+    "prefer-const": 2,
+    "no-duplicate-imports": 2,
+    "no-whitespace-before-property": 2,
+    "no-useless-rename": 2,
+    "no-unreachable": 2,
+    "camelcase": 2,
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "import/no-unresolved": [2, {caseSensitive: false, commonjs: true, ignore: ["node_modules"]}],
   },
   "globals": {
-    "global": false,
-    "it": false,
-    "xit": false,
-    "expect": false,
-    "describe": false,
-    "jest": false,
-    "require": false,
-    "module": false,
-    "Promise": false,
-    "beforeAll": false,
-    "afterAll": false,
-    "process": false,
-    "__dirname": false
+    "Promise": true,
+    "Uint8Array": true
   }
 }
