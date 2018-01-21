@@ -11,9 +11,8 @@ export class Router extends React.Component {
     return (
       <ConnectedRouter history={routeHistory}>
         <div className="fullview">
-          <Home />
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/home" component={Home}/>
+          <Route path="/" component={Home}/>
+          <Route path="/home" component={Home}/>
         </div>
       </ConnectedRouter>
     );

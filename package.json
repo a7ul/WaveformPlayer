@@ -13,7 +13,7 @@
   "author": "master-atul",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "~1.7.8",
+    "babel-eslint": "^8.2.1",
     "electron-devtools-installer": "^2.2.1",
     "eslint": "^4.13.1",
     "eslint-plugin-import": "^2.8.0",
@@ -21,6 +21,7 @@
     "redux-devtools": "^3.4.1"
   },
   "dependencies": {
+    "electron": "~1.7.8",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
