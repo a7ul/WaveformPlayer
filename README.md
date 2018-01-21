@@ -37,23 +37,7 @@ You should now get something similar to
 
 #### NPM scripts:
 - **Basic scripts**
-  - `npm run start` : Runs the electron app in developement mode with webpack running on alternate terminal with Hot Module replacement on port **9000**
-  - `npm run build` : Runs npm run build:src and then runs the electron app in production mode with those built source code and assets
-  - `npm run package:win` : Packages the prod version for Windows (x64 bit) . Requires `wine` to be installed in Mac and Linux
-  - `npm run package:mac` : Packages the prod version for Mac OSX
-  - `npm run package:linux`: Packages the prod version for linux
-- **Test and lint scripts**
-  - `npm run test` : Runs jest test cases
-  - `npm run test:watch` : Runs jest test cases in watch mode
-  - `npm run test:update` : Run jest and updates the snapshots for the components
-  - `npm run test:coverage` : Runs jest test cases and opens coverage report
-  - `npm run lint` : Runs eslint and displays all lint errors
-  - `npm run lint:fix` : Runs eslint and tries auto fix of errors
-- **Utility scripts are basically implementation for the above scripts**
-  - `npm run buildServer` : Only runs the webpack devserver on port **9000**
-  - `npm run build:src`: Runs the prod build on webpack and puts the files on dist folder .. DOESN'T DO ELECTRON BUILD.
-
-*The port configurations are present in `webpack.config.dev.js`*
+  - `npm run start` : Runs the electron app in dev mode
 
 ### Redux/React Devtools Setup
 - When you run `npm run start`, the electron window will have the devtools panel open with two extra tabs React and Redux.
@@ -62,8 +46,6 @@ You should now get something similar to
 Currently whenever you push three types of tests run to make sure you are pushing a working code.
 1. unit test cases
 2. eslint
-3. webpack prod build
-
 
 ### Contributors Guide
 **Common guidelines**
@@ -81,4 +63,4 @@ Currently whenever you push three types of tests run to make sure you are pushin
 
 ## License
 
-[WTFPL](LICENSE.md)
+[CC0 1.0](LICENSE.md)
