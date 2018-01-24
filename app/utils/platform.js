@@ -1,5 +1,6 @@
 import os from 'os';
 import path from 'path';
+
 export const currentOS = String(os.type()).toUpperCase(); // one of LINUX, DARWIN, WINDOWS_NT
 
 const BINARY_DIR = {

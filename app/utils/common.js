@@ -1,22 +1,23 @@
 import {remote} from 'electron';
 const fs = remote.require('fs');
 import childProcess from 'child_process';
+import logger from './logger';
 
 export const noop = () => {};
 
-export function readFileToArrayBuffer (absolutePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(absolutePath, (err, data) => {
-      if (err) {
-        return reject(err);
-      }
-      resolve(data.buffer);
-    });
+export function promisify (functionWithCallback) {
+  return (...args) => new Promise((resolve, reject) => {
+    functionWithCallback(...args, (err, data) => err ? reject(err) : resolve(data));
   });
 }
 
+export function readFileToArrayBuffer (absolutePath) {
+  const readFile = promisify(fs.readFile);
+  return readFile(absolutePath).then((data) => data.buffer);
+}
+
 export function execFile (binaryFilePath, commands, onProgress = noop) {
-  console.log(binaryFilePath, ...commands); //eslint-disable-line
+  logger.info(`${binaryFilePath}${commands}`);
   return new Promise((resolve, reject) => {
     const cprocess = childProcess.execFile(binaryFilePath, [...commands], {windowsHide: true},
       (error, stdout) => {

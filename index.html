@@ -5,6 +5,13 @@
     <title>YPlayer</title>
     <link rel="stylesheet" href="./app/styles/css/reset.css"></style>
     <link rel="stylesheet" href="./app/styles/css/global.css"></style>
+    <script>
+      if(process.env.NODE_ENV === 'development'){
+        const liveReload = document.createElement('script');
+        liveReload.setAttribute('src','http://localhost:9123/livereload.js');
+        document.head.appendChild(liveReload);
+      }
+    </script>
   </head>
   <body class="fullview">
     <div class="fullview" id="root"></div>

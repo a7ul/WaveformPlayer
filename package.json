@@ -4,7 +4,8 @@
   "description": "Y player",
   "main": "electron.boot.js",
   "scripts": {
-    "start": "NODE_ENV='development' electron ."
+    "start": "NODE_ENV='development' electron .",
+    "liveReload": "live-reload ./app --port=9123"
   },
   "repository": "https://github.com/master-atul/YPlayer",
   "keywords": [
@@ -18,14 +19,15 @@
     "eslint": "^4.13.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.5.1",
+    "live-reload": "^1.1.0",
     "redux-devtools": "^3.4.1"
   },
   "dependencies": {
-    "electron": "~1.7.8",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
+    "electron": "~1.7.8",
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -37,6 +39,6 @@
     "seekable-timer": "^1.0.1",
     "shelljs": "^0.7.8",
     "styled-components": "^2.4.0",
-    "winston": "^2.4.0"
+    "winston": "^3.0.0-rc1"
   }
 }

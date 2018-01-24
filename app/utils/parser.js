@@ -1,3 +1,3 @@
 export const downloadProgress = (message) => {
-  console.log(message);
+  // console.log(message);
 };
