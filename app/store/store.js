@@ -1,12 +1,12 @@
-import {applyMiddleware, compose, createStore} from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
-import {reduxRouterMiddleware} from '../router';
+import { reduxRouterMiddleware } from '../router';
 
 const enhancerList = [];
 
 if (process.env.NODE_ENV !== 'production') {
-  window.__REDUX_DEVTOOLS_EXTENSION__ && enhancerList.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+  window.__REDUX_DEVTOOLS_EXTENSION__ && enhancerList.push(window.__REDUX_DEVTOOLS_EXTENSION__()); //eslint-disable-line
 }
 
 const enhancer = compose(applyMiddleware(thunk, reduxRouterMiddleware), ...enhancerList);

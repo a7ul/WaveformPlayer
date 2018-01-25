@@ -1,7 +1,7 @@
 const VERSION_UPDATE = 'VERSION/VERSION_UPDATE';
 
 // Actions
-export const setVersion = (versionData) => ({
+export const setVersion = versionData => ({
   type: VERSION_UPDATE,
   payload: versionData
 });
@@ -18,7 +18,7 @@ const defaultState = {
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case VERSION_UPDATE: {
-      return {...state, ...action.payload};
+      return { ...state, ...action.payload };
     }
     default: {
       return state;

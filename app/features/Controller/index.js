@@ -1,14 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as styles from './style';
 import PrimaryControls from './components/PrimaryControls';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import * as actions from './redux';
 // import {decodeAudio, MusicSource} from '../../utils/audio';
 // import {readFileToArrayBuffer} from '../../utils/common';
 
 // let mSource = null;
-// readFileToArrayBuffer('/Users/atulr/Music/iTunes/iTunes Media/Music/Evanescence/Unknown Album/Evanescence - Bring Me To Life.mp3')
+// readFileToArrayBuffer('/Users/atulr/Music/iTunes/iTunes
+// Media/Music/Evanescence/Unknown Album/Evanescence - Bring Me To Life.mp3')
 //   .then(decodeAudio)
 //   .then((audioBuffer) => {
 //     mSource = new MusicSource(audioBuffer);
@@ -19,7 +20,7 @@ import * as actions from './redux';
 
 class Controller extends React.Component {
   togglePlay = () => {
-    const {setPlayStatus, isPlaying} = this.props;
+    const { setPlayStatus, isPlaying } = this.props;
     setPlayStatus(!isPlaying);
     // if (mSource) {
     //   if (!isPlaying) {
@@ -32,11 +33,16 @@ class Controller extends React.Component {
     // }
   }
 
-  render () {
-    const {isPlaying, onNext, onPrev} = this.props;
+  render() {
+    const { isPlaying, onNext, onPrev } = this.props;
     return (
       <styles.Container>
-        <PrimaryControls onPlayToggle={this.togglePlay} isPlaying={isPlaying} onNext={onNext} onPrev={onPrev}/>
+        <PrimaryControls
+          onPlayToggle={this.togglePlay}
+          isPlaying={isPlaying}
+          onNext={onNext}
+          onPrev={onPrev}
+        />
       </styles.Container>
     );
   }
@@ -56,12 +62,12 @@ Controller.propTypes = {
   onPrev: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isPlaying: state.controller.isPlaying
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setPlayStatus: (status) => dispatch(actions.setPlayStatus(status)),
+const mapDispatchToProps = dispatch => ({
+  setPlayStatus: status => dispatch(actions.setPlayStatus(status)),
   onNext: () => {
     // mSource.seek(mSource.playbackTime + 3);
   },

@@ -3,26 +3,27 @@
 2. Use AudioContext to decode audio to audiobuffer
 3. Create a AudioSourceNode and attach decoded audio buffer to it
 4. AudioSourceNode.start(0) to start the playback.
-5. Use the _audioCtx to resume and suspend all audioSourceNodes.
+5. Use the audioCtx to resume and suspend all audioSourceNodes.
 */
-import {noop} from './common';
 import Timer from 'seekable-timer';
-const _audioCtx = new AudioContext();
-const _speakerNode = _audioCtx.destination; // saving speaker node reference
+import { noop } from './common';
 
-export const decodeAudio = (rawArrayBuffer) => (
-  new Promise((resolve, reject) => _audioCtx.decodeAudioData(rawArrayBuffer, resolve, reject))
+const audioCtx = new AudioContext();
+const speakerNode = audioCtx.destination; // saving speaker node reference
+
+export const decodeAudio = rawArrayBuffer => (
+  new Promise((resolve, reject) => audioCtx.decodeAudioData(rawArrayBuffer, resolve, reject))
 );
 
-export const getSpeakerNode = () => _speakerNode;
+export const getSpeakerNode = () => speakerNode;
 
 export class MusicSource {
-  constructor (audioBuffer) {
-    this._buffer = audioBuffer;
-    this._connectNode = _speakerNode;
-    this._timer = new Timer(1000);
+  constructor(audioBuffer) {
+    this.buffer = audioBuffer;
+    this.connectNode = speakerNode;
+    this.timer = new Timer(1000);
 
-    this.node = _audioCtx.createBufferSource();
+    this.node = audioCtx.createBufferSource();
     this.playbackTime = 0;
     this.isPlaying = false;
 
@@ -33,14 +34,14 @@ export class MusicSource {
     this.onSeekHandler = noop;
     this.onErrorHandler = noop;
 
-    this._timer.setOnTickHandler((time) => {
+    this.timer.setOnTickHandler((time) => {
       this.playbackTime = time / 1000;
-      this.onTickHandler(this._getMusicSourceData());
+      this.onTickHandler(this.getMusicSourceData());
     });
   }
-  _onPlayEnd = () => this.stop()
+  onPlayEnd = () => this.stop()
 
-  _getMusicSourceData = () => ({
+  getMusicSourceData = () => ({
     node: this.node,
     playbackTime: Math.round(this.playbackTime),
     isPlaying: this.isPlaying
@@ -48,7 +49,7 @@ export class MusicSource {
 
   connect = (destinationNode) => {
     try {
-      this._connectNode = destinationNode;
+      this.connectNode = destinationNode;
       this.node.connect(destinationNode);
     } catch (err) {
       this.onErrorHandler(err);
@@ -56,15 +57,15 @@ export class MusicSource {
   }
   play = () => {
     try {
-      this.node = _audioCtx.createBufferSource();
-      this.node.buffer = this._buffer;
+      this.node = audioCtx.createBufferSource();
+      this.node.buffer = this.buffer;
       this.node.loop = false;
-      this.node.onended = this._onPlayEnd;
-      this.node.connect(this._connectNode);
+      this.node.onended = this.onPlayEnd;
+      this.node.connect(this.connectNode);
       this.node.start(0, this.playbackTime);
-      this._timer.start();
+      this.timer.start();
       this.isPlaying = true;
-      this.onPlayHandler(this._getMusicSourceData());
+      this.onPlayHandler(this.getMusicSourceData());
     } catch (err) {
       this.onErrorHandler(err);
     }
@@ -74,9 +75,9 @@ export class MusicSource {
       this.isPlaying = false;
       this.node.stop(0);
       this.node.disconnect();
-      this.onPauseHandler(this._getMusicSourceData());
+      this.onPauseHandler(this.getMusicSourceData());
       this.node = null;
-      this.playbackTime = this._timer.pause() / 1000.0;
+      this.playbackTime = this.timer.pause() / 1000.0;
     } catch (err) {
       this.onErrorHandler(err);
     }
@@ -86,10 +87,10 @@ export class MusicSource {
       this.isPlaying = false;
       this.node.stop(0);
       this.node.disconnect();
-      this.onStopHandler(this._getMusicSourceData());
+      this.onStopHandler(this.getMusicSourceData());
       this.node = null;
       this.playbackTime = 0;
-      this._timer.stop();
+      this.timer.stop();
     } catch (err) {
       this.onErrorHandler(err);
     }
@@ -97,10 +98,10 @@ export class MusicSource {
   seek = (requiredPlaybackTime) => {
     try {
       this.stop();
-      this._timer.seekBy(Math.round(requiredPlaybackTime - this.playbackTime) * 1000);
+      this.timer.seekBy(Math.round(requiredPlaybackTime - this.playbackTime) * 1000);
       this.playbackTime = requiredPlaybackTime;
       this.play();
-      this.onSeekHandler(this._getMusicSourceData());
+      this.onSeekHandler(this.getMusicSourceData());
     } catch (err) {
       this.onErrorHandler(err);
     }

@@ -4,8 +4,10 @@ import * as styles from './style';
 import Icon from '../../../../components/Icon';
 
 class PrimaryControls extends React.Component {
-  render () {
-    const {onPlayToggle, isPlaying, onNext, onPrev} = this.props;
+  render() {
+    const {
+      onPlayToggle, isPlaying, onNext, onPrev
+    } = this.props;
     return (
       <styles.Container>
         <styles.Button onClick={onPlayToggle}>

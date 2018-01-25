@@ -1,11 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import * as styles from './style';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import * as actions from './redux';
 
 class Playlist extends React.Component {
-  render () {
+  render() {
     return (
       <styles.Container>
           Hi
@@ -22,10 +20,10 @@ Playlist.propTypes = {
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = () => ({
 
 });
 

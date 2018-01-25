@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import {promisify} from './common';
-import logger from './logger';
+import { promisify } from '../../utils/common';
+import logger from '../../utils/logger';
 
 const readDir = promisify(fs.readdir);
 
 export const getPluginList = (pluginDir) => {
   const validPlugins = readDir(pluginDir)
-    .then((fileNames) => fileNames.map((fileName) => {
+    .then(fileNames => fileNames.map((fileName) => {
       const pluginPath = path.resolve(pluginDir, fileName);
       try {
         return require(pluginPath);
@@ -16,7 +16,7 @@ export const getPluginList = (pluginDir) => {
         return null;
       }
     }))
-    .then((possiblePlugins) => possiblePlugins.filter((eachPlugin) => !!eachPlugin));
+    .then(possiblePlugins => possiblePlugins.filter(eachPlugin => !!eachPlugin));
   return validPlugins;
 };
 
@@ -28,6 +28,6 @@ export const loadPlugins = (pluginList) => {
       logger.error(err);
       return null;
     }
-  }).filter((plugin) => !!plugin);
+  }).filter(plugin => !!plugin);
   return initialisedPlugins;
 };

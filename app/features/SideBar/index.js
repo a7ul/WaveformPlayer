@@ -1,11 +1,9 @@
 import React from 'react';
-import * as styles from './style.js';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import * as actions from './redux';
+import { connect } from 'react-redux';
+import * as styles from './style';
 
 class SideBar extends React.Component {
-  render () {
+  render() {
     return (
       <styles.Container />
     );
@@ -20,10 +18,10 @@ SideBar.propTypes = {
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = () => ({
 
 });
 

@@ -6,20 +6,20 @@ import SideBar from '../../features/SideBar';
 import CenterStage from '../../features/CenterStage';
 import * as styles from './style';
 
-export default class Home extends React.Component {
-  render () {
+export default class Home extends React.PureComponent {
+  render() {
     return (
       <styles.Container>
         <styles.MainWrapper>
-          <SideBar/>
+          <SideBar />
           <CenterStage>
             <div>
               {/* <Version/>
-              <Playlist/>*/}
+              <Playlist/> */}
             </div>
           </CenterStage>
         </styles.MainWrapper>
-        <Controller/>
+        <Controller />
       </styles.Container>
     );
   }

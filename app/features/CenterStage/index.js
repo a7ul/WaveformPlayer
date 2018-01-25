@@ -1,11 +1,10 @@
 import React from 'react';
-import * as styles from './style';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from './redux';
+import * as styles from './style';
 
 class CenterStage extends React.Component {
-  render () {
+  render() {
     return (
       <styles.Container>
         {this.props.children}
@@ -22,10 +21,10 @@ CenterStage.propTypes = {
   children: PropTypes.node
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = () => ({
 
 });
 

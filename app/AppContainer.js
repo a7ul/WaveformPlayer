@@ -1,17 +1,17 @@
 import React from 'react';
-import {Router} from './router';
-import {connect} from 'react-redux';
-import {getPluginList, loadPlugins} from './utils/plugin';
 import path from 'path';
+import { connect } from 'react-redux';
+import { getPluginList, loadPlugins } from './features/PluginLoader/util';
+import { Router } from './router';
 import logger from './utils/logger';
 
 getPluginList(path.resolve(__dirname, './plugins'))
-  .then((plugins) => loadPlugins(plugins))
-  .then((d) => logger.info(d))
-  .catch((err) => logger.error(err));
+  .then(plugins => loadPlugins(plugins))
+  .then(d => logger.info(d))
+  .catch(err => logger.error(err));
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <Router />
     );

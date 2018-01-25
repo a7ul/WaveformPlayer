@@ -1,5 +1,5 @@
-import {BINARIES} from './platform';
-import {execFile} from './common';
+import { BINARIES } from './platform';
+import { execFile } from './common';
 
 const defaultParams = [
   '--ffmpeg-location', BINARIES.FFMPEG,

@@ -1,15 +1,15 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {parseFFMPEGVersion} from '../util';
-import {findSoftwareVersion} from '../thunk';
+import { parseFFMPEGVersion } from '../util';
+import { findSoftwareVersion } from '../thunk';
 
 class Version extends React.Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.findSoftwareVersion();
   }
-  render () {
-    const {ffmpegVersion, youtubeDLVersion, playerVersion} = this.props;
+  render() {
+    const { ffmpegVersion, youtubeDLVersion, playerVersion } = this.props;
     return (
       <div>
         FFMPEG: {ffmpegVersion}
@@ -34,13 +34,13 @@ Version.propTypes = {
   findSoftwareVersion: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   youtubeDLVersion: state.version.youtubeDLVersion,
   ffmpegVersion: parseFFMPEGVersion(state.version.ffmpegVersion),
   playerVersion: state.version.playerVersion
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   findSoftwareVersion: () => dispatch(findSoftwareVersion())
 });
 

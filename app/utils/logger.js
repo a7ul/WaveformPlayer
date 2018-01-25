@@ -1,11 +1,9 @@
 import winston from 'winston';
+
 const Transport = require('winston-transport');
 
 class BrowserLog extends Transport {
-  constructor (opts) {
-    super(opts);
-  }
-  log (info, callback) {
+  log(info, callback) {
     setImmediate(() => {
       this.emit('logged', info);
     });

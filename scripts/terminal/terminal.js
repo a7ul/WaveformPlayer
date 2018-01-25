@@ -10,7 +10,7 @@ const startServerInNewWindow = () => {
 
   const scriptsDir = path.resolve(__dirname);
   const startCommandScript = path.resolve(scriptsDir, scriptFile);
-  const procConfig = {cwd: scriptsDir};
+  const procConfig = { cwd: scriptsDir };
   const terminal = process.env.CUSTOM_TERMINAL;
 
   shelljs.chmod('-c', '+x', startCommandScript);
@@ -20,21 +20,19 @@ const startServerInNewWindow = () => {
       return childProcess.spawnSync('open', ['-a', terminal, startCommandScript], procConfig);
     }
     return childProcess.spawnSync('open', [startCommandScript], procConfig);
-
   } else if (process.platform === 'linux') {
     procConfig.detached = true;
     if (terminal) {
-      return childProcess.spawn(terminal, ['-e', 'sh ' + startCommandScript], procConfig);
+      return childProcess.spawn(terminal, ['-e', `sh ${startCommandScript}`], procConfig);
     }
     return childProcess.spawn('sh', [startCommandScript], procConfig);
-
   } else if (/^win/.test(process.platform)) {
     procConfig.detached = true;
     procConfig.stdio = 'ignore';
     return childProcess.spawn('cmd.exe', ['/C', startCommandScript], procConfig);
-  } else {
-    console.log(`Cannot start the packager. Unknown platform ${process.platform}`); //eslint-disable-line
   }
+    console.log(`Cannot start the packager. Unknown platform ${process.platform}`); //eslint-disable-line
+  return null;
 };
 
 module.exports = startServerInNewWindow;

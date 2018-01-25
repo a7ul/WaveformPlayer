@@ -1,7 +1,7 @@
 const PLAY_STATUS = 'CONTROLLER/PLAY_STATUS';
 
 // Actions
-export const setPlayStatus = (playStatus) => ({
+export const setPlayStatus = playStatus => ({
   type: PLAY_STATUS,
   payload: playStatus
 });
@@ -16,7 +16,7 @@ const defaultState = {
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case PLAY_STATUS: {
-      return {...state, isPlaying: action.payload};
+      return { ...state, isPlaying: action.payload };
     }
     default: {
       return state;
