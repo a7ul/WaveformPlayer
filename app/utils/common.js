@@ -15,7 +15,7 @@ export function promisify(functionWithCallback) {
 
 export function readFileToArrayBuffer(absolutePath) {
   const readFile = promisify(fs.readFile);
-  return readFile(absolutePath).then(data => data.buffer);
+  return readFile(absolutePath).then((data) => data.buffer);
 }
 
 export function execFile(binaryFilePath, commands, onProgress = noop) {

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { promisify, readFileToArrayBuffer } from '../common';
+import { promisify, readFileToArrayBuffer } from '../../../app/utils/common';
 
 const checkArrayBufferEqual = (buf1, buf2) => {
   if (buf1.byteLength !== buf2.byteLength) return false;

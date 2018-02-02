@@ -4,3 +4,5 @@ build/**/*
 .DS_Store
 app/assets/binaries/**/*.*
 *.log
+coverage
+.vscode

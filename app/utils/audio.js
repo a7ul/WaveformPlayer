@@ -11,7 +11,7 @@ import { noop } from './common';
 const audioCtx = new AudioContext();
 const speakerNode = audioCtx.destination; // saving speaker node reference
 
-export const decodeAudio = rawArrayBuffer => (
+export const decodeAudio = (rawArrayBuffer) => (
   new Promise((resolve, reject) => audioCtx.decodeAudioData(rawArrayBuffer, resolve, reject))
 );
 
