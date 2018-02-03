@@ -7,7 +7,9 @@ class BrowserLog extends Transport {
     setImmediate(() => {
       this.emit('logged', info);
     });
-    console.log(info); // eslint-disable-line no-console
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(info); // eslint-disable-line no-console
+    }
     callback();
   }
 }

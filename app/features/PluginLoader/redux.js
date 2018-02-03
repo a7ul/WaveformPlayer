@@ -13,6 +13,7 @@ export const disablePlugin = createAction(DISABLE_PLUGIN);
 // Initial State
 export const defaultState = {
   plugins: {
+    // Comment left here for understanding the structure
     // pluginName: {
     //   enabled: true / false,
     //   plugin: {

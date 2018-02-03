@@ -20,14 +20,11 @@ export const getPluginList = (pluginDir) => {
   return validPlugins;
 };
 
-export const loadPlugins = (pluginList) => {
-  const initialisedPlugins = pluginList.map((eachPlugin) => {
-    try {
-      return eachPlugin.init();
-    } catch (err) {
-      logger.error(err);
-      return null;
-    }
-  }).filter((plugin) => !!plugin);
-  return initialisedPlugins;
+export const initPlugin = (plugin) => {
+  try {
+    return Promise.resolve(plugin.init());
+  } catch (err) {
+    logger.error(err);
+    return Promise.reject(err);
+  }
 };

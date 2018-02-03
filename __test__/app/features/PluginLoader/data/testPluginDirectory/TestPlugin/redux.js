@@ -1,23 +1,20 @@
-const VERSION_UPDATE = 'VERSION/VERSION_UPDATE';
+import { createAction } from 'redux-actions';
+
+const TEST_ACTION = 'TEST_PLUGIN/SOME_ACTION';
 
 // Actions
-export const setVersion = (versionData) => ({
-  type: VERSION_UPDATE,
-  payload: versionData
-});
+export const testAction = createAction(TEST_ACTION);
 
 // Initial State
 
 const defaultState = {
-  ffmpegVersion: null,
-  playerVersion: '1.0.0',
-  youtubeDLVersion: null
+
 };
 
 // Reducers
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case VERSION_UPDATE: {
+    case TEST_ACTION: {
       return { ...state, ...action.payload };
     }
     default: {
