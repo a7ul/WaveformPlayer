@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import iconPaths from './config.json';// the file exported from IcoMoon
 
 const getPath = (iconName) => {
-  const icon = iconPaths.icons.find(ico => (ico.properties.name === iconName));
+  const icon = iconPaths.icons.find((ico) => (ico.properties.name === iconName));
   if (icon) {
     return icon.icon.paths.join(' ');
   }
@@ -20,7 +20,7 @@ const Icon = ({
 );
 
 Icon.defaultProps = {
-  size: '20',
+  size: 20,
   fill: '#000'
 };
 
