@@ -6,9 +6,9 @@ import { Router } from './router';
 import logger from './utils/logger';
 
 getPluginList(path.resolve(__dirname, './plugins'))
-  .then(plugins => loadPlugins(plugins))
-  .then(d => logger.info(d))
-  .catch(err => logger.error(err));
+  .then((plugins) => loadPlugins(plugins))
+  .then((d) => logger.info(d))
+  .catch((err) => logger.error(err));
 
 class App extends React.Component {
   render() {
