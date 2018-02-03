@@ -1,30 +1,17 @@
-const ADD_PLUGIN = 'PLUGIN_MANAGER/ADD_PLUGIN';
-const REMOVE_PLUGIN = 'PLUGIN_MANAGER/REMOVE_PLUGIN';
-const ENABLE_PLUGIN = 'PLUGIN_MANAGER/ENABLE_PLUGIN';
-const DISABLE_PLUGIN = 'PLUGIN_MANAGER/DISABLE_PLUGIN';
+import { createAction } from 'redux-actions';
 // Actions
-export const addPlugin = plugin => ({
-  type: ADD_PLUGIN,
-  payload: plugin
-});
-
-export const deletePlugin = pluginName => ({
-  type: REMOVE_PLUGIN,
-  payload: pluginName
-});
-
-export const enablePlugin = pluginName => ({
-  type: ENABLE_PLUGIN,
-  payload: pluginName
-});
-
-export const disablePlugin = pluginName => ({
-  type: DISABLE_PLUGIN,
-  payload: pluginName
-});
+const ADD_PLUGIN = 'PLUGIN_LOADER/ADD_PLUGIN';
+const REMOVE_PLUGIN = 'PLUGIN_LOADER/REMOVE_PLUGIN';
+const ENABLE_PLUGIN = 'PLUGIN_LOADER/ENABLE_PLUGIN';
+const DISABLE_PLUGIN = 'PLUGIN_LOADER/DISABLE_PLUGIN';
+// Action creators
+export const addPlugin = createAction(ADD_PLUGIN);
+export const removePlugin = createAction(REMOVE_PLUGIN);
+export const enablePlugin = createAction(ENABLE_PLUGIN);
+export const disablePlugin = createAction(DISABLE_PLUGIN);
 
 // Initial State
-const defaultState = {
+export const defaultState = {
   plugins: {
     // pluginName: {
     //   enabled: true / false,
