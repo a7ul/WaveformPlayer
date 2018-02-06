@@ -5,14 +5,25 @@ import * as actions from './redux';
 import { getPluginList } from './util';
 import { generatePluginMenuItemTemplate } from '../MenuManager/util';
 import { buildMenu } from '../MenuManager/thunk';
+import { sagaMiddleware } from '../../store/store';
+
+const runPluginSaga = (pluginSaga) => {
+  if (pluginSaga) {
+    sagaMiddleware.run(pluginSaga);
+  }
+};
 
 export const initPlugin = (rawPlugin) => (dispatch) => {
   try {
     return Promise.resolve(rawPlugin.init())
-      .then((plugin) => ({
-        ...plugin,
-        menuItem: generatePluginMenuItemTemplate(plugin.menuItem, dispatch)
-      }));
+      .then((initialised) => {
+        runPluginSaga(initialised.saga);
+        const menuItem = generatePluginMenuItemTemplate(initialised.menuItem, dispatch);
+        return {
+          ...initialised,
+          menuItem
+        };
+      });
   } catch (err) {
     return Promise.reject(err);
   }
