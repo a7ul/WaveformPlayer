@@ -18,7 +18,8 @@ SideBar.propTypes = {
 
 };
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state) => ({
+  plugins: state.pluginLoader.plugins
 });
 
 const mapDispatchToProps = () => ({

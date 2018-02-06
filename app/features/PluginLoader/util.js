@@ -19,12 +19,3 @@ export const getPluginList = (pluginDir) => {
     .then((possiblePlugins) => possiblePlugins.filter((eachPlugin) => !!eachPlugin));
   return validPlugins;
 };
-
-export const initPlugin = (plugin) => {
-  try {
-    return Promise.resolve(plugin.init());
-  } catch (err) {
-    logger.error(err);
-    return Promise.reject(err);
-  }
-};

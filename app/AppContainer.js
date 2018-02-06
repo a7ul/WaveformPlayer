@@ -1,16 +1,14 @@
 import React from 'react';
-// import path from 'path';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { getPluginList, loadPlugins } from './features/PluginLoader/util';
+import { noop } from './utils/common';
+import { loadAllPlugins } from './features/PluginLoader/thunk';
 import { Router } from './router';
-// import logger from './utils/logger';
-
-// getPluginList(path.resolve(__dirname, './plugins'))
-//   .then((plugins) => loadPlugins(plugins))
-//   .then((d) => logger.info(d))
-//   .catch((err) => logger.error(err));
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.loadPlugins();
+  }
   render() {
     return (
       <Router />
@@ -18,12 +16,18 @@ class App extends React.Component {
   }
 }
 
-App.defaultProps = {};
+App.defaultProps = {
+  loadPlugins: noop
+};
 
-App.propTypes = {};
+App.propTypes = {
+  loadPlugins: PropTypes.func
+};
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  loadPlugins: () => dispatch(loadAllPlugins())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

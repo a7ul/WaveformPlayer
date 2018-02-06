@@ -15,6 +15,7 @@ module.exports = {
     'global-require': ['off'],
     'react/jsx-filename-extension': ['off'],
     'react/prefer-stateless-function': ['off'],
-    'arrow-parens': ['error', 'always']
+    'arrow-parens': ['error', 'always'],
+    'max-len': ["error", { "code": 150 }]
   }
 };

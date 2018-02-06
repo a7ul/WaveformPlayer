@@ -1,11 +1,12 @@
 import VersionView from './VersionView';
 import { reducer } from './redux';
+import menu from './menuItem';
 
 export const init = () => ({
   name: 'version',
-  menuItems: [],
+  menuItem: menu,
   reducer,
-  sideMenuItems: [],
+  sideMenuItem: [],
   settings: [],
   centerStageView: VersionView
 });
