@@ -1,7 +1,7 @@
 const ADD_TO_PLAYLIST = 'PLAYLIST/ADD_TO_PLAYLIST';
 
 // Actions
-export const addToPlaylist = song => ({
+export const addToPlaylist = (song) => ({
   type: ADD_TO_PLAYLIST,
   payload: song
 });

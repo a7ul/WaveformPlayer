@@ -1,30 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import * as styles from './style';
+import PlaylistView from './PlaylistView';
+import { reducer } from './redux';
+import menu from './menuItem';
 
-class Playlist extends React.Component {
-  render() {
-    return (
-      <styles.Container>
-          Hi
-      </styles.Container>
-    );
-  }
-}
-
-Playlist.defaultProps = {
-
-};
-
-Playlist.propTypes = {
-
-};
-
-const mapStateToProps = () => ({
+export const init = () => ({
+  name: 'playlist',
+  menuItem: menu,
+  reducer,
+  sideMenuItem: [],
+  settings: [],
+  centerStageView: PlaylistView
 });
-
-const mapDispatchToProps = () => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
