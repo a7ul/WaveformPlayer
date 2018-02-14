@@ -1,10 +1,8 @@
 import React from 'react';
-import createHistory from 'history/createBrowserHistory';
 import { Route } from 'react-router';
-import { ConnectedRouter, routerMiddleware, push, goBack } from 'react-router-redux';
+import { ConnectedRouter, push, goBack } from 'react-router-redux';
 import Home from './page/Home';
-
-const routeHistory = createHistory();
+import { routeHistory } from './store/store';
 
 export class Router extends React.Component {
   render() {
@@ -19,6 +17,5 @@ export class Router extends React.Component {
   }
 }
 
-export const reduxRouterMiddleware = routerMiddleware(routeHistory);
 export const pushAction = push;
 export const goBackAction = goBack;

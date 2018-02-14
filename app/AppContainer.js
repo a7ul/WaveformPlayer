@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import { noop } from './utils/common';
 import { loadAllPlugins } from './features/PluginLoader/thunk';
@@ -9,9 +10,23 @@ class App extends React.Component {
   componentDidMount() {
     this.props.loadPlugins();
   }
+  onDragStart = () => {
+    console.log('FIRED START');
+    /* ... */
+  };
+  onDragEnd = () => {
+    console.log('FIRED END');
+
+    /* ... */
+  };
   render() {
     return (
-      <Router />
+      <DragDropContext
+        onDragStart={this.onDragStart}
+        onDragEnd={this.onDragEnd}
+      >
+        <Router />
+      </DragDropContext>
     );
   }
 }

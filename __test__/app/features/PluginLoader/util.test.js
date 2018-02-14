@@ -1,5 +1,6 @@
 import path from 'path';
-import { getPluginList, initPlugin } from '../../../../app/features/PluginLoader/util';
+import { getPluginList } from '../../../../app/features/PluginLoader/util';
+import { initPlugin } from '../../../../app/features/PluginLoader/thunk';
 
 describe('Plugin Loader', () => {
   describe('util', () => {
@@ -21,7 +22,8 @@ describe('Plugin Loader', () => {
           centerStageView: { test: 'view' }
         };
         const pluginValid = { init: jest.fn(() => samplePluginInitSync) };
-        initPlugin(pluginValid).then((initialisedPlugin) => {
+        const dispatch = jest.fn();
+        initPlugin(pluginValid)(dispatch).then((initialisedPlugin) => {
           expect(pluginValid.init).toHaveBeenCalled();
           expect(initialisedPlugin).toEqual(samplePluginInitSync);
           done();
@@ -38,7 +40,8 @@ describe('Plugin Loader', () => {
           centerStageView: { test: 'view' }
         };
         const pluginValidAsync = { init: jest.fn(() => Promise.resolve(samplePluginInit)) };
-        initPlugin(pluginValidAsync).then((initialisedPlugin) => {
+        const dispatch = jest.fn();
+        initPlugin(pluginValidAsync)(dispatch).then((initialisedPlugin) => {
           expect(pluginValidAsync.init).toHaveBeenCalled();
           expect(initialisedPlugin).toEqual(samplePluginInit);
           done();
@@ -51,7 +54,8 @@ describe('Plugin Loader', () => {
             throw new Error({ msg: 'some error' });
           })
         };
-        initPlugin(pluginInvalid).then(() => {
+        const dispatch = jest.fn();
+        initPlugin(pluginInvalid)(dispatch).then(() => {
           done('this plugin wasnt supposed to resolve');
         }).catch((err) => {
           expect(pluginInvalid.init).toHaveBeenCalled();
@@ -67,7 +71,8 @@ describe('Plugin Loader', () => {
             return Promise.reject(err);
           })
         };
-        initPlugin(pluginInvalid).then(() => {
+        const dispatch = jest.fn();
+        initPlugin(pluginInvalid)(dispatch).then(() => {
           done('this plugin wasnt supposed to resolve');
         }).catch((err) => {
           expect(pluginInvalid.init).toHaveBeenCalled();

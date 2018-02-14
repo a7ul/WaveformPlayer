@@ -3,9 +3,9 @@ import { reducer } from './redux';
 
 export const init = () => ({
   name: 'testPlugin',
-  menuItems: [],
+  menuItem: {},
   reducer,
-  sideMenuItems: [],
+  sideMenuItem: {},
   settings: [],
   centerStageView: TestPluginView
 });

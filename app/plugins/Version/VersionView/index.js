@@ -34,13 +34,13 @@ Version.propTypes = {
   findSoftwareVersion: PropTypes.func
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   youtubeDLVersion: state.version.youtubeDLVersion,
   ffmpegVersion: parseFFMPEGVersion(state.version.ffmpegVersion),
   playerVersion: state.version.playerVersion
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   findSoftwareVersion: () => dispatch(findSoftwareVersion())
 });
 
