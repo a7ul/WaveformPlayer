@@ -28,6 +28,7 @@
     "jest": "^22.1.4",
     "live-reload": "^1.1.0",
     "mock-os": "^0.0.1",
+    "prop-types": "^15.6.0",
     "redux-devtools": "^3.4.1"
   },
   "dependencies": {

@@ -10,12 +10,12 @@ class App extends React.Component {
   componentDidMount() {
     this.props.loadPlugins();
   }
-  onDragStart = () => {
-    console.log('FIRED START');
+  onDragStart = (data) => {
+    console.log('FIRED START', data);
     /* ... */
   };
-  onDragEnd = () => {
-    console.log('FIRED END');
+  onDragEnd = (data) => {
+    console.log('FIRED END', data);
 
     /* ... */
   };

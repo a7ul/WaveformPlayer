@@ -14,7 +14,7 @@ export const disablePlugin = createAction(DISABLE_PLUGIN);
 export const defaultState = {
   plugins: {
     // Comment left here for understanding the structure
-    // pluginName: {
+    // pluginId: {
     //   enabled: true / false,
     //   plugin: {
     //     name: 'version',
@@ -34,8 +34,8 @@ export const reducer = (state = defaultState, action) => {
     case ADD_PLUGIN: {
       const { plugins } = state;
       const plugin = action.payload;
-      const pluginName = plugin.name;
-      plugins[pluginName] = {
+      const pluginId = plugin.id;
+      plugins[pluginId] = {
         plugin,
         enabled: true
       };
@@ -43,23 +43,23 @@ export const reducer = (state = defaultState, action) => {
     }
     case REMOVE_PLUGIN: {
       const { plugins } = state;
-      const pluginName = action.payload;
-      delete plugins[pluginName];
+      const pluginId = action.payload;
+      delete plugins[pluginId];
       return { ...state, plugins };
     }
     case ENABLE_PLUGIN: {
       const { plugins } = state;
-      const pluginName = action.payload;
-      if (plugins[pluginName]) {
-        plugins[pluginName].enabled = true;
+      const pluginId = action.payload;
+      if (plugins[pluginId]) {
+        plugins[pluginId].enabled = true;
       }
       return { ...state, plugins };
     }
     case DISABLE_PLUGIN: {
       const { plugins } = state;
-      const pluginName = action.payload;
-      if (plugins[pluginName]) {
-        plugins[pluginName].enabled = false;
+      const pluginId = action.payload;
+      if (plugins[pluginId]) {
+        plugins[pluginId].enabled = false;
       }
       return { ...state, plugins };
     }

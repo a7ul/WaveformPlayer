@@ -1,14 +1,17 @@
+import React from 'react';
 import VersionView from './VersionView';
 import { reducer } from './redux';
 import saga from './saga';
-import menu from './menuItem';
+import menuItem from './menuItem';
+import sideMenuItem from './sideMenuItem';
 
 export const init = () => ({
   name: 'version',
-  menuItem: menu,
+  id: 'com.yplayer.version',
+  menuItem,
   reducer,
   saga,
-  sideMenuItem: [],
+  sideMenuItem,
   settings: [],
-  centerStageView: VersionView
+  getView: () => <VersionView />
 });

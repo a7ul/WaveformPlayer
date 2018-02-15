@@ -6,6 +6,7 @@ import { getPluginList } from './util';
 import { generatePluginMenuItemTemplate } from '../MenuManager/util';
 import { buildMenu } from '../MenuManager/thunk';
 import { sagaMiddleware } from '../../store/store';
+import { buildSideMenu } from '../SideBar/thunk';
 
 const runPluginSaga = (pluginSaga) => {
   if (pluginSaga) {
@@ -46,6 +47,7 @@ export const loadAllPlugins = () => (dispatch) => {
       return Promise.all(pluginLoad);
     }).then(() => {
       dispatch(buildMenu());
+      dispatch(buildSideMenu());
     });
 };
 

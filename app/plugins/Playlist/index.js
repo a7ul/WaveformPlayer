@@ -1,12 +1,15 @@
+import React from 'react';
 import PlaylistView from './PlaylistView';
 import { reducer } from './redux';
-import menu from './menuItem';
+import menuItem from './menuItem';
+import sideMenuItem from './sideMenuItem';
 
 export const init = () => ({
   name: 'playlist',
-  menuItem: menu,
+  id: 'com.yplayer.playlist',
+  menuItem,
+  sideMenuItem,
   reducer,
-  sideMenuItem: [],
   settings: [],
-  centerStageView: PlaylistView
+  getView: () => <PlaylistView />
 });
