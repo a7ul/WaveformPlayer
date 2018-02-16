@@ -1,8 +1,7 @@
-import { showVersionModal } from './thunk';
 
 const menuItem = {
   label: 'Version',
-  submenu: [{ label: 'Something', action: showVersionModal() }]
+  submenu: [{ label: 'Something' }]
 };
 
 export default menuItem;

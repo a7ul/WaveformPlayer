@@ -39,7 +39,7 @@ export const reducer = (state = defaultState, action) => {
         plugin,
         enabled: true
       };
-      return { ...state, plugins };
+      return { ...state, plugins: { ...plugins } };
     }
     case REMOVE_PLUGIN: {
       const { plugins } = state;

@@ -16,6 +16,3 @@ export const findSoftwareVersion = () => (dispatch) => {
     logger.error(err);
   });
 };
-export const showVersionModal = () => (dispatch) => {
-  alert('Hi');
-};

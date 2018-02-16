@@ -1,4 +1,3 @@
-import React from 'react';
 import PlaylistView from './PlaylistView';
 import { reducer } from './redux';
 import menuItem from './menuItem';
@@ -11,5 +10,5 @@ export const init = () => ({
   sideMenuItem,
   reducer,
   settings: [],
-  getView: () => <PlaylistView />
+  view: PlaylistView
 });

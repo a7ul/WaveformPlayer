@@ -12,12 +12,7 @@ export default class Home extends React.PureComponent {
       <styles.Container>
         <styles.MainWrapper>
           <SideBar />
-          <CenterStage>
-            <div>
-              {/* <Version/>
-              <Playlist/> */}
-            </div>
-          </CenterStage>
+          <CenterStage />
         </styles.MainWrapper>
         <Controller />
       </styles.Container>

@@ -1,4 +1,3 @@
-import React from 'react';
 import VersionView from './VersionView';
 import { reducer } from './redux';
 import saga from './saga';
@@ -13,5 +12,5 @@ export const init = () => ({
   saga,
   sideMenuItem,
   settings: [],
-  getView: () => <VersionView />
+  view: VersionView
 });

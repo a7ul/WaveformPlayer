@@ -14,6 +14,7 @@ const runPluginSaga = (pluginSaga) => {
   }
 };
 
+
 export const initPlugin = (rawPlugin) => (dispatch) => {
   try {
     return Promise.resolve(rawPlugin.init())
