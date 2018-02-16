@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 import { ConnectedRouter, push, goBack } from 'react-router-redux';
 import Home from './page/Home';
-import { routeHistory } from './store/store';
+import { routeHistory } from './redux/store';
 
 export class Router extends React.Component {
   render() {

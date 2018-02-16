@@ -6,9 +6,9 @@ import * as actions from './redux';
 import { getPluginList } from './util';
 import { generatePluginMenuItemTemplate } from '../MenuManager/util';
 import { buildMenu } from '../MenuManager/thunk';
-import { sagaMiddleware, store } from '../../store/store';
+import { sagaMiddleware, store } from '../../redux/store';
 import { buildSideMenu } from '../SideBar/thunk';
-import { rootReducerMap } from '../../store/rootReducer';
+import { rootReducerMap } from '../../redux/reducers';
 import { setCenterView } from '../CenterStage/redux';
 
 const runPluginSaga = (pluginSaga) => {
