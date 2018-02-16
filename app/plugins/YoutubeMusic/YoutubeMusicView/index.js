@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as styles from './style';
+
 
 class YoutubeMusicView extends React.Component {
   render() {
     return (
-      <div>
-       YOUTUBE
-      </div>
+      <styles.WebView id="foo" src="https://www.youtube.com/" />
     );
   }
 }
