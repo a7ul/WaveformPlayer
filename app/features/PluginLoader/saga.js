@@ -5,11 +5,10 @@ import result from 'lodash/result';
 import logger from '../../utils/logger';
 import { store, sagaMiddleware } from '../../redux/store';
 import { pluginReducers, getRootReducer } from '../../redux/reducers';
-import { generatePluginMenuItemTemplate, addToPluginMenu, buildMenu } from '../MenuManager/util';
-import * as menuList from '../MenuManager/config';
 import { addToSideMenu } from '../SideBar/redux';
 import { getPluginList } from './util';
 import * as actions from './redux';
+import { addMenuOfPlugin } from './thunk';
 
 const LOAD_PLUGIN = 'PLUGIN_LOADER/LOAD_PLUGIN';
 
@@ -29,15 +28,6 @@ function addSagaOfPlugin(pluginSaga) {
   }
 }
 
-function* addMenuOfPlugin(rawPluginMenu) {
-  if (rawPluginMenu) {
-    const menuItem = yield call(generatePluginMenuItemTemplate, rawPluginMenu, put);
-    yield call(addToPluginMenu, menuItem);
-    const menuTemplate = Object.values(menuList);
-    buildMenu(menuTemplate);
-  }
-}
-
 function* addSideMenuOfPlugin(sideMenuItem, pluginId) {
   if (sideMenuItem) {
     const pluginSideMenuItem = { ...sideMenuItem, pluginId };
@@ -52,7 +42,7 @@ function* pluginLoader(action) {
     yield put(actions.addPlugin(plugin));
     yield call(addReducerOfPlugin, plugin.reducer, plugin.id);
     yield call(addSagaOfPlugin, plugin.saga);
-    yield call(addMenuOfPlugin, plugin.menuItem);
+    yield put(addMenuOfPlugin(plugin.menuItem)); // This is a thunk
     yield call(addSideMenuOfPlugin, plugin.sideMenuItem, plugin.id);
   } catch (err) {
     logger.error(`PLUGINLOAD:${result(rawPlugin, 'name')}`, err);
