@@ -5,12 +5,20 @@ import { reducer as pluginLoader } from '../../features/PluginLoader/redux';
 import { reducer as sideMenu } from '../../features/SideBar/redux';
 import { reducer as centerStage } from '../../features/CenterStage/redux';
 
-export const rootReducerMap = {
+export const pluginReducers = {
+  /* This will be dynamically filled up when loading plugins */
+  dummy: () => null
+};
+
+export const reducerMap = {
   controller,
   pluginLoader,
   sideMenu,
   router,
-  centerStage
+  centerStage,
+  get plugins() {
+    return combineReducers(pluginReducers);
+  }
 };
 
-export default combineReducers(rootReducerMap);
+export const getRootReducer = () => combineReducers(reducerMap);

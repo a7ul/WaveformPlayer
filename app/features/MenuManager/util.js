@@ -1,3 +1,7 @@
+import { remote } from 'electron';
+import { pluginMenu } from './config';
+
+const { Menu } = remote;
 
 export const generatePluginMenuItemTemplate = (pluginMenuConfig = {}, callAction) => {
   const { action, submenu } = pluginMenuConfig;
@@ -6,11 +10,13 @@ export const generatePluginMenuItemTemplate = (pluginMenuConfig = {}, callAction
   return { ...pluginMenuConfig, submenu: generatedSubmenu, click };
 };
 
-export const buildMainPluginMenu = (pluginMenuTemplateList) => {
-  const pluginMenu = {
-    id: 'pluginMenu',
-    label: 'Plugins',
-    submenu: [...pluginMenuTemplateList]
-  };
+export const addToPluginMenu = (pluginMenuTemplate) => {
+  pluginMenu.submenu.push(pluginMenuTemplate);
   return pluginMenu;
 };
+
+export const buildMenu = (menuTemplate) => {
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
+};
+

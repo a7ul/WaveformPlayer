@@ -1,3 +1,4 @@
+/* TODO: NEED TO CHECK IF THIS REDUCER IS NOW NEEDED?  */
 import { createAction } from 'redux-actions';
 // Actions
 const ADD_PLUGIN = 'PLUGIN_LOADER/ADD_PLUGIN';

@@ -49,4 +49,9 @@ export const helpMenu = {
     }
   ]
 };
+export const pluginMenu = {
+  id: 'pluginMenu',
+  label: 'Plugins',
+  submenu: []
+};
 
