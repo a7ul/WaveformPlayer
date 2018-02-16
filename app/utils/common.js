@@ -21,7 +21,7 @@ export function readFileToArrayBuffer(absolutePath) {
 }
 
 export function execFile(binaryFilePath, commands, onProgress = noop) {
-  logger.info(`${binaryFilePath}${commands}`);
+  logger.info(`${binaryFilePath} ${commands}`);
   return new Promise((resolve, reject) => {
     const cprocess = childProcess.execFile(
       binaryFilePath, [...commands], { windowsHide: true },

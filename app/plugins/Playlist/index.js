@@ -3,12 +3,14 @@ import { reducer } from './redux';
 import menuItem from './menuItem';
 import sideMenuItem from './sideMenuItem';
 
+import { PLUGIN_ID, PLUGIN_NAME } from './config';
+
 export const init = () => ({
-  name: 'playlist',
-  id: 'com.yplayer.playlist',
+  name: PLUGIN_NAME,
+  id: PLUGIN_ID,
   menuItem,
-  sideMenuItem,
   reducer,
+  sideMenuItem,
   settings: [],
   view: PlaylistView
 });

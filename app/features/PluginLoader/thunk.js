@@ -1,19 +1,21 @@
 import path from 'path';
+import { combineReducers } from 'redux';
 import result from 'lodash/result';
 import logger from '../../utils/logger';
 import * as actions from './redux';
 import { getPluginList } from './util';
 import { generatePluginMenuItemTemplate } from '../MenuManager/util';
 import { buildMenu } from '../MenuManager/thunk';
-import { sagaMiddleware } from '../../store/store';
+import { sagaMiddleware, store } from '../../store/store';
 import { buildSideMenu } from '../SideBar/thunk';
+import { rootReducerMap } from '../../store/rootReducer';
+import { setCenterView } from '../CenterStage/redux';
 
 const runPluginSaga = (pluginSaga) => {
   if (pluginSaga) {
     sagaMiddleware.run(pluginSaga);
   }
 };
-
 
 export const initPlugin = (rawPlugin) => (dispatch) => {
   try {
@@ -40,6 +42,24 @@ export const loadPlugin = (rawPlugin, dispatch) => {
   return initPromise;
 };
 
+
+export const buildReducer = () => (dispatch, getState) => {
+  const state = getState();
+  const plugins = Object.values(result(state, 'pluginLoader.plugins', {}));
+  const pluginsReducerMap = {};
+  plugins.forEach((eachPlugin) => {
+    const { reducer, id } = eachPlugin.plugin;
+    if (reducer) {
+      pluginsReducerMap[id] = reducer;
+    }
+  });
+
+  store.replaceReducer(combineReducers({
+    ...rootReducerMap,
+    plugins: combineReducers(pluginsReducerMap)
+  }));
+};
+
 export const loadAllPlugins = () => (dispatch) => {
   const pluginDirectory = path.resolve(__dirname, '../../plugins');
   return getPluginList(pluginDirectory)
@@ -49,6 +69,7 @@ export const loadAllPlugins = () => (dispatch) => {
     }).then(() => {
       dispatch(buildMenu());
       dispatch(buildSideMenu());
+      dispatch(buildReducer());
+      dispatch(setCenterView('com_yplayer_playlist'));
     });
 };
-

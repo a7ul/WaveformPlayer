@@ -18,4 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const enhancer = compose(applyMiddleware(thunk, sagaMiddleware, reduxRouterMiddleware), ...enhancerList);
 
-export const initStore = (initialState = {}) => createStore(rootReducer, initialState, enhancer);
+const initStore = (initialState = {}) => createStore(rootReducer, initialState, enhancer);
+
+export const store = initStore({});
+

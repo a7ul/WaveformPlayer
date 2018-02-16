@@ -7,7 +7,7 @@ export const setCenterView = createAction(SET_CENTER_VIEW_PLUGIN);
 
 // Initial State
 const defaultState = {
-  activeView: 'com.yplayer.version'
+  activeView: ''
 };
 
 // Reducers
