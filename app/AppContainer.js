@@ -1,29 +1,39 @@
 import React from 'react';
-// import path from 'path';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
-// import { getPluginList, loadPlugins } from './features/PluginLoader/util';
 import { Router } from './router';
-// import logger from './utils/logger';
-
-// getPluginList(path.resolve(__dirname, './plugins'))
-//   .then((plugins) => loadPlugins(plugins))
-//   .then((d) => logger.info(d))
-//   .catch((err) => logger.error(err));
 
 class App extends React.Component {
+  onDragStart = (data) => {
+    console.log('FIRED START', data);
+    /* ... */
+  };
+  onDragEnd = (data) => {
+    console.log('FIRED END', data);
+
+    /* ... */
+  };
   render() {
     return (
-      <Router />
+      <DragDropContext
+        onDragStart={this.onDragStart}
+        onDragEnd={this.onDragEnd}
+      >
+        <Router />
+      </DragDropContext>
     );
   }
 }
 
-App.defaultProps = {};
+App.defaultProps = {
+};
 
-App.propTypes = {};
+App.propTypes = {
+};
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = () => ({
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

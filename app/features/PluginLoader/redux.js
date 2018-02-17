@@ -1,3 +1,4 @@
+/* TODO: NEED TO CHECK IF THIS REDUCER IS NOW NEEDED?  */
 import { createAction } from 'redux-actions';
 // Actions
 const ADD_PLUGIN = 'PLUGIN_LOADER/ADD_PLUGIN';
@@ -13,7 +14,8 @@ export const disablePlugin = createAction(DISABLE_PLUGIN);
 // Initial State
 export const defaultState = {
   plugins: {
-    // pluginName: {
+    // Comment left here for understanding the structure
+    // pluginId: {
     //   enabled: true / false,
     //   plugin: {
     //     name: 'version',
@@ -33,32 +35,32 @@ export const reducer = (state = defaultState, action) => {
     case ADD_PLUGIN: {
       const { plugins } = state;
       const plugin = action.payload;
-      const pluginName = plugin.name;
-      plugins[pluginName] = {
+      const pluginId = plugin.id;
+      plugins[pluginId] = {
         plugin,
         enabled: true
       };
-      return { ...state, plugins };
+      return { ...state, plugins: { ...plugins } };
     }
     case REMOVE_PLUGIN: {
       const { plugins } = state;
-      const pluginName = action.payload;
-      delete plugins[pluginName];
+      const pluginId = action.payload;
+      delete plugins[pluginId];
       return { ...state, plugins };
     }
     case ENABLE_PLUGIN: {
       const { plugins } = state;
-      const pluginName = action.payload;
-      if (plugins[pluginName]) {
-        plugins[pluginName].enabled = true;
+      const pluginId = action.payload;
+      if (plugins[pluginId]) {
+        plugins[pluginId].enabled = true;
       }
       return { ...state, plugins };
     }
     case DISABLE_PLUGIN: {
       const { plugins } = state;
-      const pluginName = action.payload;
-      if (plugins[pluginName]) {
-        plugins[pluginName].enabled = false;
+      const pluginId = action.payload;
+      if (plugins[pluginId]) {
+        plugins[pluginId].enabled = false;
       }
       return { ...state, plugins };
     }

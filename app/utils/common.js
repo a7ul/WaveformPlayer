@@ -7,6 +7,8 @@ const fs = remote.require('fs');
 
 export const noop = () => {};
 
+export const NullView = () => null;
+
 export function promisify(functionWithCallback) {
   return (...args) => new Promise((resolve, reject) => {
     functionWithCallback(...args, (err, data) => (err ? reject(err) : resolve(data)));
@@ -19,7 +21,7 @@ export function readFileToArrayBuffer(absolutePath) {
 }
 
 export function execFile(binaryFilePath, commands, onProgress = noop) {
-  logger.info(`${binaryFilePath}${commands}`);
+  logger.info(`${binaryFilePath} ${commands}`);
   return new Promise((resolve, reject) => {
     const cprocess = childProcess.execFile(
       binaryFilePath, [...commands], { windowsHide: true },

@@ -1,3 +1,6 @@
 export const remote = {
-  require
+  require,
+  app: {
+    getName: () => 'TestApp'
+  }
 };

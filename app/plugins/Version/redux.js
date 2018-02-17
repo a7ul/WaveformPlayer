@@ -1,7 +1,7 @@
 const VERSION_UPDATE = 'VERSION/VERSION_UPDATE';
 
 // Actions
-export const setVersion = versionData => ({
+export const setVersion = (versionData) => ({
   type: VERSION_UPDATE,
   payload: versionData
 });
