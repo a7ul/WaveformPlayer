@@ -1,71 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 import * as styles from './style';
 import { DROPPABLE_IDS, DRAGGABLE_TYPES } from '../../config/editableLayout';
 import PlayerTitle from './components/PlayerTitle';
 import * as actions from './redux';
 import ShowSideBarButton from './components/ShowSideBarButton';
+import SideMenuItem from './components/SideMenuItem';
 
-class SideBar extends React.Component {
-  getDraggableSideMenuItem = (sideMenuItem, index) => {
-    const { pluginId, label } = sideMenuItem;
-
-    return (
-      <Draggable key={pluginId} draggableId={pluginId} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} index={index}>
-        {
-          (provided/* , snapshot */) => (
-            <div>
-              <div
-                ref={provided.innerRef}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-              >
-                <h4>{label}</h4>
-              </div>
-              {provided.placeholder}
-            </div>
-          )
-       }
-      </Draggable>
-    );
-  }
-
-  render() {
-    const {
-      editable, sideMenuItems, setSideMenuVisibility, visible
-    } = this.props;
-    return (
-      [
-        <Droppable
-          key="sideMenu"
-          droppableId={DROPPABLE_IDS.SIDEBAR}
-          type={DRAGGABLE_TYPES.SIDEBAR_ITEM}
-          direction="vertical"
-          isDropDisabled={!editable}
-        >
-          {
+const SideBar = (props) => {
+  const {
+    editable, sideMenuItems, setSideMenuVisibility, visible
+  } = props;
+  return ([
+    <Droppable key="sideMenu" droppableId={DROPPABLE_IDS.SIDEBAR} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} direction="vertical" isDropDisabled={!editable}>
+      {
           (provided, snapshot) => (
-            <styles.Container
-              editEnabled={editable}
-              visible={visible}
-              isDraggingOver={snapshot.isDraggingOver}
-              innerRef={provided.innerRef}
-            >
+            <styles.Container editEnabled={editable} visible={visible} isDraggingOver={snapshot.isDraggingOver} innerRef={provided.innerRef}>
               <PlayerTitle setSideMenuVisibility={setSideMenuVisibility} />
               {
-                sideMenuItems.map((sideMenuItem, index) => this.getDraggableSideMenuItem(sideMenuItem, index))
+                sideMenuItems.map((sideMenuItem, index) => (
+                  <SideMenuItem key={sideMenuItem.pluginId} sideMenu={sideMenuItem} index={index} isDraggable={editable} />
+                ))
               }
               {provided.placeholder}
             </styles.Container>
         )}
-        </Droppable>,
-        <ShowSideBarButton key="showSideMenuIcon" visible={!visible} setSideMenuVisibility={setSideMenuVisibility} />
-      ]
-    );
-  }
-}
+    </Droppable>,
+    <ShowSideBarButton key="showSideMenuIcon" visible={!visible} setSideMenuVisibility={setSideMenuVisibility} />
+  ]);
+};
 
 SideBar.defaultProps = {
   editable: false,
