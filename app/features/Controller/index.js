@@ -6,6 +6,7 @@ import PrimaryControls from './components/PrimaryControls';
 import * as actions from './redux';
 import { decodeAudio, MusicSource } from '../../utils/audio';
 import { readFileToArrayBuffer } from '../../utils/common';
+import CurrentPlaying from './components/CurrentPlaying';
 
 let mSource = null;
 readFileToArrayBuffer('/Users/atulr/Desktop/AlanWalker_Faded.mp3')
@@ -37,6 +38,7 @@ class Controller extends React.Component {
     const { isPlaying, onNext, onPrev } = this.props;
     return (
       <styles.Container>
+        <CurrentPlaying />
         <PrimaryControls
           onPlayToggle={this.togglePlay}
           isPlaying={isPlaying}

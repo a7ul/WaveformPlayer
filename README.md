@@ -1,13 +1,13 @@
-# YPlayer
+# WaveformPlayer
 
 ## Dev Guide
 ### Getting started
 #### Setup
 - Install [yarn](https://yarnpkg.com/en/docs/install)/npm and node.
-- `git clone https://github.com/master-atul/YPlayer.git`
-- `cd YPlayer`
+- `git clone https://github.com/master-atul/WaveformPlayer.git`
+- `cd WaveformPlayer`
 - `yarn`
-- After this download the assets bundle from `https://github.com/master-atul/YPlayer/releases/download/binaries/binaries.tar.gz`
+- After this download the assets bundle from `https://github.com/master-atul/WaveformPlayer/releases/download/binaries/binaries.tar.gz`
 - extract `binaries.tar.gz` into /app/assets folder.
 You should now get something similar to
 ```
@@ -68,7 +68,7 @@ Currently whenever you push three types of tests run to make sure you are pushin
 
 ## TODO
 
-1. REMOVE THE ENTIRE PLUGIN FROM REDUCER - DONT THINK IT IS NEEDED
+1. REMOVE THE ENTIRE PLUGIN FROM REDUCER - DONT THINK IT IS NEEDED ✅
 2. SETTINGS PAGE
 3. UI STYLING
 4. CONTROLLER AND PLAYING OF ACTUAL MUSIC
@@ -76,3 +76,4 @@ Currently whenever you push three types of tests run to make sure you are pushin
 6. FIX THE TEST CASES AND WRITE MORE
 7. MOVE PLUGIN_ID AND NAME OUT OF INIT - helps in debugging 
 8. START WRITING DOCUMENTATION
+9. ADD PLUGIN REMOVE FUNCTIONALITY along with ENABLE/DISABLE

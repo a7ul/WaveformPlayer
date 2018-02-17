@@ -6,7 +6,7 @@ import * as styles from './style';
 class YoutubeMusicView extends React.Component {
   render() {
     return (
-      <styles.WebView id="foo" src="https://www.youtube.com/" />
+      <styles.WebView id="foo" src="https://www.google.com/" />
     );
   }
 }

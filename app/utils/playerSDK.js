@@ -3,6 +3,8 @@ import * as common from './common';
 import * as logger from './logger';
 import * as platform from './platform';
 import * as commands from './commands';
+import * as plugins from './plugins';
+import * as styleConstants from '../styles/constants';
 
 module.exports = {
   utils: {
@@ -10,6 +12,10 @@ module.exports = {
     common,
     logger,
     commands,
-    platform
+    platform,
+    plugins
+  },
+  style: {
+    constants: styleConstants
   }
 };

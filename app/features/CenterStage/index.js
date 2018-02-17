@@ -3,22 +3,22 @@ import result from 'lodash/result';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as styles from './style';
-import { NullView } from '../../utils/common';
 import ErrorBoundary from '../../components/ErrorBoundary';
-
+import NothingToShow from './components/NothingToShow';
+import { getActivePlugin, getActivePluginName } from './util';
 
 class CenterStage extends React.Component {
-  getActiveView = () => {
-    const { activeView, plugins = {} } = this.props;
-    const activePlugin = plugins[activeView] || { plugin: {} };
-    return activePlugin.plugin.view;
+  getNullView = () => {
+    const nothingToShowComponent = () => <NothingToShow activePluginId={this.props.activePluginId} />;
+    return nothingToShowComponent;
   }
+  getActiveView = (activePlugin) => (activePlugin && activePlugin.view ? activePlugin.view : this.getNullView())
+
   render() {
-    const View = this.getActiveView();
-    const PluginView = View || NullView;
-    const { activeView, plugins = {} } = this.props;
-    const activePlugin = plugins[activeView] || { plugin: {} };
-    const errorMessage = `There seems to be some issue with ${activePlugin.plugin.name}(${activePlugin.plugin.id}) plugin`;
+    const { activePluginId } = this.props;
+    const activePlugin = getActivePlugin(activePluginId);
+    const PluginView = this.getActiveView(activePlugin);
+    const errorMessage = `There seems to be some issue with ${getActivePluginName(activePlugin)}(${activePluginId}) plugin`;
     return (
       <styles.Container>
         <ErrorBoundary errorMessage={errorMessage} >
@@ -30,17 +30,15 @@ class CenterStage extends React.Component {
 }
 
 CenterStage.defaultProps = {
-
+  activePluginId: ''
 };
 
 CenterStage.propTypes = {
-  activeView: PropTypes.string.isRequired,
-  plugins: PropTypes.object.isRequired
+  activePluginId: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  plugins: result(state, 'pluginLoader.plugins'),
-  activeView: result(state, 'centerStage.activeView')
+  activePluginId: result(state, 'centerStage.activePluginId')
 });
 
 const mapDispatchToProps = () => ({

@@ -7,14 +7,14 @@ export const setCenterView = createAction(SET_CENTER_VIEW_PLUGIN);
 
 // Initial State
 const defaultState = {
-  activeView: ''
+  activePluginId: ''
 };
 
 // Reducers
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case SET_CENTER_VIEW_PLUGIN: {
-      return { ...state, activeView: action.payload };
+      return { ...state, activePluginId: action.payload };
     }
     default: {
       return state;

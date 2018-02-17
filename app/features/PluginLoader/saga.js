@@ -7,8 +7,9 @@ import { store, sagaMiddleware } from '../../redux/store';
 import { pluginReducers, getRootReducer } from '../../redux/reducers';
 import { addToSideMenu } from '../SideBar/redux';
 import { getPluginList } from './util';
-import * as actions from './redux';
+import { addSettingsOfPlugin } from '../Settings/redux';
 import { addMenuOfPlugin } from './thunk';
+import * as pluginsHolder from '../../utils/plugins';
 
 const LOAD_PLUGIN = 'PLUGIN_LOADER/LOAD_PLUGIN';
 
@@ -39,7 +40,8 @@ function* pluginLoader(action) {
   const rawPlugin = action.payload;
   try {
     const plugin = yield call(rawPlugin.init);
-    yield put(actions.addPlugin(plugin));
+    yield put(addSettingsOfPlugin({ pluginId: plugin.id, settings: plugin.settings }));
+    yield call(pluginsHolder.addPlugin, plugin.id, plugin);
     yield call(addReducerOfPlugin, plugin.reducer, plugin.id);
     yield call(addSagaOfPlugin, plugin.saga);
     yield put(addMenuOfPlugin(plugin.menuItem)); // This is a thunk

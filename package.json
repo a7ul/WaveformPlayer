@@ -1,7 +1,7 @@
 {
-  "name": "yplayer",
+  "name": "waveform-player",
   "version": "1.0.0",
-  "description": "Y player",
+  "description": "Waveform Player - A Hackable and customisable open source music player",
   "main": "electron.boot.js",
   "scripts": {
     "start": "NODE_ENV='development' electron .",
@@ -9,7 +9,7 @@
     "test": "jest --notify --coverage",
     "test:watch": "jest --watch"
   },
-  "repository": "https://github.com/master-atul/YPlayer",
+  "repository": "https://github.com/master-atul/WaveformPlayer",
   "keywords": [
     "Electron"
   ],
@@ -39,6 +39,7 @@
     "babel-register": "^6.26.0",
     "electron": "1.8.2-beta.3",
     "history": "^4.7.2",
+    "polished": "^1.9.2",
     "react": "^16.2.0",
     "react-beautiful-dnd": "^4.0.1",
     "react-dom": "^16.2.0",
