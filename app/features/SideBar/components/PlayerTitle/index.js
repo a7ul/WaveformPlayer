@@ -10,7 +10,7 @@ class PlayerTitle extends React.PureComponent {
   render() {
     return (
       <styles.Container>
-        <styles.Title>{PLAYER_NAME} </styles.Title>
+        <styles.Title><styles.AnimatedIcon shouldAnimate={false} size={20} />{PLAYER_NAME}</styles.Title>
         <styles.HideSideBarIcon size={20} name="first_page" onClick={this.hideSideMenu} />
       </styles.Container>
     );

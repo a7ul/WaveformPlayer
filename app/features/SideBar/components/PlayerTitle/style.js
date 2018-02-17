@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { colors, fonts } from '../../../../styles/constants';
 import measurements from '../../../../styles/measurements';
 import Icon from '../../../../components/Icon';
+import AnimatedLoaderIcon from '../../../../components/AnimatedLoaderIcon';
 
 export const Container = styled.div`
   display: flex;
   padding: ${measurements.CONTAINER_PADDING};
-  padding-right: 5px;
   align-self: stretch;
   justify-content: space-between; 
   flex-direction: row;
@@ -20,6 +20,11 @@ export const Title = styled.p`
   color: ${colors.PRIMARY};
   font-size: ${fonts.LARGE_SIZE};
   font-weight: ${fonts.MEDIUM_WEIGHT};
+`;
+
+export const AnimatedIcon = styled(AnimatedLoaderIcon)`
+  padding-right: 5px;
+  margin-top: -2px;
 `;
 
 export const HideSideBarIcon = styled(Icon)`
