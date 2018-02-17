@@ -39,6 +39,7 @@
     "babel-register": "^6.26.0",
     "electron": "1.8.2-beta.3",
     "history": "^4.7.2",
+    "polished": "^1.9.2",
     "react": "^16.2.0",
     "react-beautiful-dnd": "^4.0.1",
     "react-dom": "^16.2.0",
