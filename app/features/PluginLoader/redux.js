@@ -16,15 +16,7 @@ export const defaultState = {
   plugins: {
     // Comment left here for understanding the structure
     // pluginId: {
-    //   enabled: true / false,
-    //   plugin: {
-    //     name: 'version',
-    //     menuItems: [],
-    //     reducer,
-    //     sideMenuItems: [],
-    //     settings: [],
-    //     centerStageView: ReactComponent
-    //   }
+    //   enabled: true / false
     // }
   }
 };
@@ -34,35 +26,35 @@ export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_PLUGIN: {
       const { plugins } = state;
-      const plugin = action.payload;
-      const pluginId = plugin.id;
-      plugins[pluginId] = {
-        plugin,
-        enabled: true
-      };
-      return { ...state, plugins: { ...plugins } };
+      const pluginId = action.payload;
+      const newPlugins = { ...plugins };
+      newPlugins[pluginId] = plugins[pluginId] || { enabled: true };
+      return { ...state, plugins: newPlugins };
     }
     case REMOVE_PLUGIN: {
       const { plugins } = state;
       const pluginId = action.payload;
-      delete plugins[pluginId];
-      return { ...state, plugins };
+      const newPlugins = { ...plugins };
+      delete newPlugins[pluginId];
+      return { ...state, plugins: newPlugins };
     }
     case ENABLE_PLUGIN: {
       const { plugins } = state;
       const pluginId = action.payload;
-      if (plugins[pluginId]) {
-        plugins[pluginId].enabled = true;
+      const newPlugins = { ...plugins };
+      if (newPlugins[pluginId]) {
+        newPlugins[pluginId].enabled = true;
       }
-      return { ...state, plugins };
+      return { ...state, plugins: newPlugins };
     }
     case DISABLE_PLUGIN: {
       const { plugins } = state;
       const pluginId = action.payload;
-      if (plugins[pluginId]) {
-        plugins[pluginId].enabled = false;
+      const newPlugins = { ...plugins };
+      if (newPlugins[pluginId]) {
+        newPlugins[pluginId].enabled = false;
       }
-      return { ...state, plugins };
+      return { ...state, plugins: newPlugins };
     }
     default: {
       return state;

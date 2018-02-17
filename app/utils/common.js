@@ -7,8 +7,6 @@ const fs = remote.require('fs');
 
 export const noop = () => {};
 
-export const NullView = () => null;
-
 export function promisify(functionWithCallback) {
   return (...args) => new Promise((resolve, reject) => {
     functionWithCallback(...args, (err, data) => (err ? reject(err) : resolve(data)));
