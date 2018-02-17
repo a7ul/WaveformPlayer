@@ -10,7 +10,7 @@ export const Container = styled.div`
   overflow-x: hidden;
   opacity:${(props) => (props.visible ? 1 : 0)};
   z-index: 2;
-  box-shadow: 0px 0px 2px 2px ${colors.LIGHT_SHADOW};
+  box-shadow: 0px -3px 2px 2px ${colors.LIGHT_SHADOW};
   background-color: ${(props) => {
     if (!props.editEnabled) {
       return colors.LIGHT_BACKGROUND;

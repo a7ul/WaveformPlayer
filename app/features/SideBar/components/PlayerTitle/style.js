@@ -6,6 +6,7 @@ import Icon from '../../../../components/Icon';
 export const Container = styled.div`
   display: flex;
   padding: ${measurements.CONTAINER_PADDING};
+  padding-right: 5px;
   align-self: stretch;
   justify-content: space-between; 
   flex-direction: row;
@@ -23,7 +24,7 @@ export const Title = styled.p`
 
 export const HideSideBarIcon = styled(Icon)`
   display: flex;
-  padding: 10px 0 10px 10px;
+  padding: 10px 5px 10px 10px;
   cursor: pointer;
   fill: ${colors.DARK};
 `;
