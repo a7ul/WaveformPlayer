@@ -1,5 +1,5 @@
 import { remote } from 'electron';
-
+import isEqual from 'lodash/isEqual';
 import childProcess from 'child_process';
 import logger from './logger';
 
@@ -13,12 +13,12 @@ export function promisify(functionWithCallback) {
   });
 }
 
-export function readFileToArrayBuffer(absolutePath) {
+export const readFileToArrayBuffer = (absolutePath) => {
   const readFile = promisify(fs.readFile);
   return readFile(absolutePath).then((data) => data.buffer);
-}
+};
 
-export function execFile(binaryFilePath, commands, onProgress = noop) {
+export const execFile = (binaryFilePath, commands, onProgress = noop) => {
   logger.info(`${binaryFilePath} ${commands}`);
   return new Promise((resolve, reject) => {
     const cprocess = childProcess.execFile(
@@ -34,4 +34,10 @@ export function execFile(binaryFilePath, commands, onProgress = noop) {
       onProgress(data);
     });
   });
-}
+};
+
+export const checkIfSerializable = (jsonObject) => {
+  const cleanedJson = JSON.parse(JSON.stringify(jsonObject));
+  return isEqual(cleanedJson, jsonObject);
+};
+

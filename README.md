@@ -68,7 +68,7 @@ Currently whenever you push three types of tests run to make sure you are pushin
 
 ## TODO
 
-1. REMOVE THE ENTIRE PLUGIN FROM REDUCER - DONT THINK IT IS NEEDED
+1. REMOVE THE ENTIRE PLUGIN FROM REDUCER - DONT THINK IT IS NEEDED ✅
 2. SETTINGS PAGE
 3. UI STYLING
 4. CONTROLLER AND PLAYING OF ACTUAL MUSIC
@@ -76,3 +76,4 @@ Currently whenever you push three types of tests run to make sure you are pushin
 6. FIX THE TEST CASES AND WRITE MORE
 7. MOVE PLUGIN_ID AND NAME OUT OF INIT - helps in debugging 
 8. START WRITING DOCUMENTATION
+9. ADD PLUGIN REMOVE FUNCTIONALITY along with ENABLE/DISABLE
