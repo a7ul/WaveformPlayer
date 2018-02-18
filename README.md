@@ -77,3 +77,4 @@ Currently whenever you push three types of tests run to make sure you are pushin
 7. MOVE PLUGIN_ID AND NAME OUT OF INIT - helps in debugging 
 8. START WRITING DOCUMENTATION
 9. ADD PLUGIN REMOVE FUNCTIONALITY along with ENABLE/DISABLE
+10. FIGURE OUT ICON STUFF

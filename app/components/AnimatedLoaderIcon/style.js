@@ -25,5 +25,6 @@ export const FrontPolyline = Polyline.extend`
   stroke: ${colors.PRIMARY};
   stroke-dasharray: 12, 36;
   stroke-dashoffset: 48;
+  will-change: stroke-dashoffset;
   animation: ${(props) => (props.shouldAnimate ? `${dashKeyFrames} 1s linear infinite;` : 'none')}
 `;

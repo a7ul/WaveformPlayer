@@ -1,4 +1,16 @@
 {
-  "presets": ["env", "stage-0", "react"],
-  "plugins": ["babel-plugin-styled-components"]
+  "presets": [
+    ["@babel/preset-env", {
+    "shippedProposals": true,
+    "useBuiltIns": "usage",
+    "targets": {
+      "chrome": "59",
+      "node": "8.2"
+    }
+  }],
+  "@babel/preset-react"],
+  "plugins": [
+    "babel-plugin-styled-components",
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

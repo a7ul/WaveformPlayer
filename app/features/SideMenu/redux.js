@@ -20,7 +20,8 @@ const defaultState = {
 export const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_TO_SIDE_MENU: {
-      return { ...state, items: [...state.items, action.payload] };
+      const sideMenuItem = { ...action.payload, collapsed: true };
+      return { ...state, items: [...state.items, sideMenuItem] };
     }
     case SET_SIDE_MENU_EDITABLE: {
       return { ...state, editable: !!action.payload };

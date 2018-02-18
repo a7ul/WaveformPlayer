@@ -1,8 +1,6 @@
 import React from 'react';
 import Controller from '../../features/Controller';
-// import Version from '../../features/Version';
-// import Playlist from '../../features/Playlist';
-import SideBar from '../../features/SideBar';
+import SideBar from '../../features/SideMenu';
 import CenterStage from '../../features/CenterStage';
 import * as styles from './style';
 

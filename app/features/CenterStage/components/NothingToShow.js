@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getActivePlugin, getActivePluginName } from '../util';
+import { getActivePluginName } from '../util';
+import { getPlugin } from '../../../utils/plugins';
 
 const NothingToShow = (props) => {
   const { activePluginId } = props;
   const pluginId = activePluginId || 'No plugin specified!';
-  const activePlugin = getActivePlugin(activePluginId);
+  const activePlugin = getPlugin(activePluginId);
   return (
     <div>{getActivePluginName(activePlugin)}({pluginId})</div>
   );

@@ -1,7 +1,7 @@
 const PLAY_STATUS = 'CONTROLLER/PLAY_STATUS';
 
 // Actions
-export const setPlayStatus = playStatus => ({
+export const setPlayStatus = (playStatus) => ({
   type: PLAY_STATUS,
   payload: playStatus
 });
