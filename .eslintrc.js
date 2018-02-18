@@ -3,9 +3,9 @@ module.exports = {
   env: {
     jest: true,
     browser: true,
-    node: true
+    node: true,
+    es6: true
   },
-  plugins:['json'],
   extends: 'airbnb',
   rules: {
     'comma-dangle': ['error', 'never'],
@@ -19,6 +19,8 @@ module.exports = {
     'react/prefer-stateless-function': ['off'],
     'react/forbid-prop-types':['off'],
     'arrow-parens': ['error', 'always'],
-    'max-len': ["error", { "code": 160 }]
+    'max-len': ['error', { 'code': 160 }],
+    'jsx-a11y/no-static-element-interactions':['off'],
+    'jsx-a11y/click-events-have-key-events':['off']
   }
 };

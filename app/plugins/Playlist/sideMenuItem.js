@@ -1,7 +1,12 @@
 export default {
   label: 'Playlist',
   submenu: [
-    { label: 'Favourite' },
+    {
+      label: 'Favourite',
+      submenu: [
+        { label: 'Subsubmenu' }
+      ]
+    },
     { label: 'something' }
   ]
 };

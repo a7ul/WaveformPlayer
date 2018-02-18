@@ -1,36 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Draggable } from 'react-beautiful-dnd';
-import { DRAGGABLE_TYPES } from '../../../../config/editableLayout';
+import Accordian from '../../../../components/Accordian';
+import SideMenuAccordianHead from './components/SideMenuAccordianHead';
 
-const SideMenuItem = (props) => {
-  const { id, sideMenu, index, isDraggable } = props;
-  return (
-    <Draggable key={id} draggableId={id} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} isDragDisabled={!isDraggable} index={index}>
-      {
-        (provided/* , snapshot */) => (
-          <div>
-            <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} >
-              <h4>{ sideMenu.label}</h4>
-            </div>
-            {provided.placeholder}
-          </div>
-        )
-     }
-    </Draggable>
-  );
-};
+class SideMenuItem extends React.Component {
+  getHeadComponent = (otherSideMenu) => (accordianProps) => (
+    <SideMenuAccordianHead {...accordianProps} {...otherSideMenu} />
+  )
+  render() {
+    const { submenu, ...otherSideMenu } = this.props;
+    return (
+      <Accordian headComponent={this.getHeadComponent(otherSideMenu)}>
+        {submenu ? submenu.map((eachSubMenu) => <SideMenuItem key={eachSubMenu.label} {...eachSubMenu} />) : null}
+      </Accordian>
+    );
+  }
+}
 
 SideMenuItem.defaultProps = {
-  isDraggable: false
+  icon: '',
+  label: '',
+  submenu: null
 };
-
 SideMenuItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  sideMenu: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  isDraggable: PropTypes.bool
+  icon: PropTypes.string,
+  label: PropTypes.string,
+  submenu: PropTypes.array
 };
-
-
 export default SideMenuItem;

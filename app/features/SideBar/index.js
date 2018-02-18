@@ -9,38 +9,37 @@ import * as actions from './redux';
 import ShowSideBarButton from './components/ShowSideBarButton';
 import SideMenuItem from './components/SideMenuItem';
 import { getPlugin } from '../../utils/plugins';
-import Accordian from '../../components/Accordian';
-import AccordianHead from '../../components/Accordian/components/AccordianHead';
-import AccordianBody from '../../components/Accordian/components/AccordianBody';
+import { addDraggable } from '../../components/DraggableHOC';
 
-const SideBar = (props) => {
-  const {
-    editable, sideMenuItems, setSideMenuVisibility, visible
-  } = props;
-  return ([
-    <Droppable key="sideMenu" droppableId={DROPPABLE_IDS.SIDEBAR} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} direction="vertical" isDropDisabled={!editable}>
-      {
-          (provided, snapshot) => (
-            <styles.Container editEnabled={editable} visible={visible} isDraggingOver={snapshot.isDraggingOver} innerRef={provided.innerRef}>
-              <PlayerTitle setSideMenuVisibility={setSideMenuVisibility} />
-              {
-                sideMenuItems.map(({ pluginId }, index) => {
-                  const plugin = getPlugin(pluginId);
-                  const { sideMenuItem } = plugin;
-                  return <SideMenuItem key={pluginId} id={pluginId} sideMenu={sideMenuItem} index={index} isDraggable={editable} />;
-                })
-              }
-              {provided.placeholder}
-            </styles.Container>
-        )}
-    </Droppable>,
-    <Accordian key="dummy" >
-      <AccordianHead />
-      <AccordianBody />
-    </Accordian>,
-    <ShowSideBarButton key="showSideMenuIcon" visible={!visible} setSideMenuVisibility={setSideMenuVisibility} />
-  ]);
-};
+class SideBar extends React.Component {
+  componentWillUpdate() {
+    this.renderedSideMenuItems = this.props.sideMenuItems.map(({ pluginId }, index) => {
+      const { sideMenuItem } = getPlugin(pluginId);
+      const draggableOptions = { draggableId: pluginId, key: pluginId, type: DRAGGABLE_TYPES.SIDEBAR_ITEM, index, isDragDisabled: !this.props.editable };
+      const DraggableSideMenuItem = addDraggable(draggableOptions)(SideMenuItem);
+      return <DraggableSideMenuItem key={pluginId} {...sideMenuItem} />;
+    });
+  }
+
+  render() {
+    const { editable, setSideMenuVisibility, visible } = this.props;
+    return ([
+      <Droppable key="sideMenu" droppableId={DROPPABLE_IDS.SIDEBAR} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} direction="vertical" isDropDisabled={!editable}>
+        {
+            (provided, snapshot) => (
+              <styles.Container editEnabled={editable} visible={visible} isDraggingOver={snapshot.isDraggingOver} innerRef={provided.innerRef}>
+                <PlayerTitle setSideMenuVisibility={setSideMenuVisibility} />
+                {
+                  this.renderedSideMenuItems
+                }
+                {provided.placeholder}
+              </styles.Container>
+          )}
+      </Droppable>,
+      <ShowSideBarButton key="showSideMenuIcon" visible={!visible} setSideMenuVisibility={setSideMenuVisibility} />
+    ]);
+  }
+}
 
 SideBar.defaultProps = {
   editable: false,
