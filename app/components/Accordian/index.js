@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './style';
 import HeadText from './components/HeadText';
 
 class Accordian extends React.Component {
@@ -17,16 +16,12 @@ class Accordian extends React.Component {
   render() {
     const { headText, headComponent, children, ...extraProps } = this.props;
     const Head = headComponent;
-    return (
-      <styles.Container {...extraProps}>
-        {
-         Head
-         ? <Head toggle={this.toggle} expanded={this.state.expanded} />
-         : <HeadText toggle={this.toggle} expanded={this.state.expanded} text={headText} />
-        }
-        {this.state.expanded ? children : null}
-      </styles.Container>
-    );
+    return ([
+      Head
+        ? <Head key="head" toggle={this.toggle} expanded={this.state.expanded} {...extraProps} />
+        : <HeadText key="headText" toggle={this.toggle} expanded={this.state.expanded} text={headText} {...extraProps} />,
+      this.state.expanded ? children : null
+    ]);
   }
 }
 Accordian.defaultProps = {

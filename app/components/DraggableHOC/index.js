@@ -11,7 +11,8 @@ export const addDraggable = (draggableOptions) => (WrappedComponent) => {
               <WrappedComponent {...props} />
             </div>
             {provided.placeholder}
-          </div>)
+          </div>
+        )
       }
     </Draggable>
   );

@@ -2,30 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Icon from '../../../../../../components/Icon';
-import { noop } from '../../../../../../utils/common';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
+import * as styles from './style';
 
 class SideMenuAccordianHead extends React.Component {
   onHeadClick = () => {
-    const { actionDispatcher, action, click } = this.props;
-    const actionHandler = () => actionDispatcher(action);
-    return click || (action ? actionHandler : noop);
+    const { action, click, toggle, submenu, actionDispatcher } = this.props;
+    if (submenu) {
+      return toggle();
+    } else if (click) {
+      return click();
+    } else if (action) {
+      return actionDispatcher(action);
+    }
+    return null;
   }
-  customComponentRenderer = () => {
-    const { component: CustomComponent } = this.props;
-    return <ErrorBoundary><CustomComponent /></ErrorBoundary>;
-  }
+
   render() {
-    const { toggle, expanded, component, label, icon, submenu } = this.props;
-    const expansionSymbol = (expanded ? '-' : '+');
-    const onHeadClick = submenu ? noop : this.getOnHeadClick;
+    const { component, submenu, expanded, label, icon } = this.props;
+
     return (
-      component ? this.customComponentRenderer() :
-      <div onClick={onHeadClick}>
-        {icon ? <Icon size={20} name={icon} /> : null}
-        {submenu ? expansionSymbol : null}
-        <div style={{ border: '1px solid black', padding: 10 }} onClick={() => toggle()}>{label}</div>
-      </div>
+      component
+        ? (<ErrorBoundary><component /></ErrorBoundary>)
+        : (
+          <styles.Container onClick={this.onHeadClick}>
+            <div> {icon ? <Icon size={20} name={icon} /> : null} </div>
+            <div>{label}</div>
+            <styles.ExpanderIcon data-show={submenu} data-collapsed={!expanded} name="expand_more" size={20} />
+          </styles.Container>
+        )
     );
   }
 }
