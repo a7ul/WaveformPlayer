@@ -4,15 +4,14 @@ import { Draggable } from 'react-beautiful-dnd';
 import { DRAGGABLE_TYPES } from '../../../../config/editableLayout';
 
 const SideMenuItem = (props) => {
-  const { sideMenu, index, isDraggable } = props;
-  const { pluginId } = sideMenu;
+  const { id, sideMenu, index, isDraggable } = props;
   return (
-    <Draggable key={pluginId} draggableId={pluginId} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} isDragDisabled={!isDraggable} index={index}>
+    <Draggable key={id} draggableId={id} type={DRAGGABLE_TYPES.SIDEBAR_ITEM} isDragDisabled={!isDraggable} index={index}>
       {
         (provided/* , snapshot */) => (
           <div>
             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} >
-              <h4>{sideMenu.label}</h4>
+              <h4>{ sideMenu.label}</h4>
             </div>
             {provided.placeholder}
           </div>
@@ -27,10 +26,8 @@ SideMenuItem.defaultProps = {
 };
 
 SideMenuItem.propTypes = {
-  sideMenu: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    pluginId: PropTypes.string.isRequired
-  }).isRequired,
+  id: PropTypes.string.isRequired,
+  sideMenu: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isDraggable: PropTypes.bool
 };

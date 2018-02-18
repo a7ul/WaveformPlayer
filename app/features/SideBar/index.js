@@ -8,6 +8,10 @@ import PlayerTitle from './components/PlayerTitle';
 import * as actions from './redux';
 import ShowSideBarButton from './components/ShowSideBarButton';
 import SideMenuItem from './components/SideMenuItem';
+import { getPlugin } from '../../utils/plugins';
+import Accordian from '../../components/Accordian';
+import AccordianHead from '../../components/Accordian/components/AccordianHead';
+import AccordianBody from '../../components/Accordian/components/AccordianBody';
 
 const SideBar = (props) => {
   const {
@@ -20,14 +24,20 @@ const SideBar = (props) => {
             <styles.Container editEnabled={editable} visible={visible} isDraggingOver={snapshot.isDraggingOver} innerRef={provided.innerRef}>
               <PlayerTitle setSideMenuVisibility={setSideMenuVisibility} />
               {
-                sideMenuItems.map((sideMenuItem, index) => (
-                  <SideMenuItem key={sideMenuItem.pluginId} sideMenu={sideMenuItem} index={index} isDraggable={editable} />
-                ))
+                sideMenuItems.map(({ pluginId }, index) => {
+                  const plugin = getPlugin(pluginId);
+                  const { sideMenuItem } = plugin;
+                  return <SideMenuItem key={pluginId} id={pluginId} sideMenu={sideMenuItem} index={index} isDraggable={editable} />;
+                })
               }
               {provided.placeholder}
             </styles.Container>
         )}
     </Droppable>,
+    <Accordian key="dummy" >
+      <AccordianHead />
+      <AccordianBody />
+    </Accordian>,
     <ShowSideBarButton key="showSideMenuIcon" visible={!visible} setSideMenuVisibility={setSideMenuVisibility} />
   ]);
 };

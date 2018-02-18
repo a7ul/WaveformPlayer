@@ -29,10 +29,9 @@ function addSagaOfPlugin(pluginSaga) {
   }
 }
 
-function* addSideMenuOfPlugin(sideMenuItem, pluginId) {
+function* addSideMenuOfPlugin(pluginId, sideMenuItem) {
   if (sideMenuItem) {
-    const pluginSideMenuItem = { ...sideMenuItem, pluginId };
-    yield put(addToSideMenu(pluginSideMenuItem));
+    yield put(addToSideMenu({ pluginId }));
   }
 }
 
@@ -45,7 +44,7 @@ function* pluginLoader(action) {
     yield call(addReducerOfPlugin, plugin.reducer, plugin.id);
     yield call(addSagaOfPlugin, plugin.saga);
     yield put(addMenuOfPlugin(plugin.menuItem)); // This is a thunk
-    yield call(addSideMenuOfPlugin, plugin.sideMenuItem, plugin.id);
+    yield call(addSideMenuOfPlugin, plugin.id, plugin.sideMenuItem);
   } catch (err) {
     logger.error(`PLUGINLOAD:${result(rawPlugin, 'name')}`, err);
   }
