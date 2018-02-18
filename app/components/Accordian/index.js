@@ -24,7 +24,7 @@ class Accordian extends React.Component {
          ? <Head toggle={this.toggle} expanded={this.state.expanded} />
          : <HeadText toggle={this.toggle} expanded={this.state.expanded} text={headText} />
         }
-        <styles.Body expanded={this.state.expanded}>{children}</styles.Body>
+        {this.state.expanded ? children : null}
       </styles.Container>
     );
   }

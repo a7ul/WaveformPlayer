@@ -24,5 +24,5 @@ click: (function) - A function to be called on onClick. It will be called withou
 icon: (string) - Material Icon name // Not applicable for MenuItems
 component: (function) - A function that returns a React Component or a React component class. //Not applicable for Menu Items
 // PS: component - Using this option would mean everything except submenu wouldn't apply.
-// PS: action would take precedence over click
+// PS: click would take precedence over action
 */

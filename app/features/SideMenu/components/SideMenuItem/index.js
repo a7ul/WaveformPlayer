@@ -4,13 +4,13 @@ import Accordian from '../../../../components/Accordian';
 import SideMenuAccordianHead from './components/SideMenuAccordianHead';
 
 class SideMenuItem extends React.Component {
-  getHeadComponent = (otherSideMenu) => (accordianProps) => (
-    <SideMenuAccordianHead {...accordianProps} {...otherSideMenu} />
+  getHeadComponent = (sideMenuProps) => (accordianProps) => (
+    <SideMenuAccordianHead {...accordianProps} {...sideMenuProps} />
   )
   render() {
-    const { submenu, ...otherSideMenu } = this.props;
+    const { submenu } = this.props;
     return (
-      <Accordian headComponent={this.getHeadComponent(otherSideMenu)}>
+      <Accordian headComponent={this.getHeadComponent(this.props)}>
         {submenu ? submenu.map((eachSubMenu) => <SideMenuItem key={eachSubMenu.label} {...eachSubMenu} />) : null}
       </Accordian>
     );

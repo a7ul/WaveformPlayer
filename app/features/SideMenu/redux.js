@@ -12,7 +12,7 @@ export const setSideMenuVisibility = createAction(SET_SIDE_MENU_VISIBILITY);
 // Initial State
 const defaultState = {
   items: [],
-  editable: true,
+  editable: false,
   visible: true
 };
 

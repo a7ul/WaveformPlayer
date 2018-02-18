@@ -5,7 +5,7 @@ import result from 'lodash/result';
 import logger from '../../utils/logger';
 import { store, sagaMiddleware } from '../../redux/store';
 import { pluginReducers, getRootReducer } from '../../redux/reducers';
-import { addToSideMenu } from '../SideBar/redux';
+import { addToSideMenu } from '../SideMenu/redux';
 import { getPluginList } from './util';
 import { addSettingsOfPlugin } from '../Settings/redux';
 import { addMenuOfPlugin } from './thunk';
