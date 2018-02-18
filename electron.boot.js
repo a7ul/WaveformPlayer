@@ -12,7 +12,10 @@ const createWindow = () => {
     width: 800,
     height: 600,
     show: false,
-    frame: false
+    frame: false,
+    webPreferences: {
+      experimentalFeatures: true
+    }
   });
   mainWindow.maximize();
 

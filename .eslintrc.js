@@ -5,6 +5,7 @@ module.exports = {
     browser: true,
     node: true
   },
+  plugins:['json'],
   extends: 'airbnb',
   rules: {
     'comma-dangle': ['error', 'never'],
