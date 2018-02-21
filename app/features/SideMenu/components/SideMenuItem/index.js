@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Accordian from '../../../../components/Accordian';
+import Accordian from 'react-super-accordion';
 import SideMenuAccordianHead from './components/SideMenuAccordianHead';
 
 class SideMenuItem extends React.Component {
