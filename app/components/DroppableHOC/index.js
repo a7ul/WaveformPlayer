@@ -2,7 +2,8 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
-const Container = styled.div``;
+const Container = styled.div`
+`;
 export const addDroppable = (droppableOptions) => (WrappedComponent) => {
   const droppableHOC = (props) => (
     <Droppable {...droppableOptions} >

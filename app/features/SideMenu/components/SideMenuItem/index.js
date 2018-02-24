@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Accordian from 'react-super-accordion';
 import SideMenuAccordianHead from './components/SideMenuAccordianHead';
+import * as styles from './style';
 
 class SideMenuItem extends React.Component {
   getHeadComponent = (sideMenuProps) => (accordianProps) => (
@@ -11,7 +12,9 @@ class SideMenuItem extends React.Component {
     const { submenu } = this.props;
     return (
       <Accordian headComponent={this.getHeadComponent(this.props)}>
-        {submenu ? submenu.map((eachSubMenu) => <SideMenuItem key={eachSubMenu.label} {...eachSubMenu} />) : null}
+        <styles.Group>
+          {submenu ? submenu.map((eachSubMenu) => <SideMenuItem key={eachSubMenu.label} {...eachSubMenu} />) : null}
+        </styles.Group>
       </Accordian>
     );
   }
