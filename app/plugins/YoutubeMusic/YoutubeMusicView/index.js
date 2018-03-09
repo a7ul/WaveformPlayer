@@ -19,14 +19,13 @@ class YoutubeMusicView extends React.PureComponent {
     this.webViewDOM.addEventListener('did-navigate', this.onDidNavigate);
     this.props.closeSideMenu();
   }
-  onStartLoad = (evt) => {
+  onStartLoad = () => {
     this.props.setProgress(true);
-    this.props.setCurrentUrl(evt.target.src);
+    // console.log(evt.target.src, 'CURRENT');
   }
-  onStopLoad = () => {
+  onStopLoad = (evt) => {
     this.props.setProgress(false);
-    const { history } = this.webViewDOM.getWebContents();
-    this.webViewDOM.getWebContents().history = uniq(history); // fix for dual history incase of some sites like youtube
+    this.props.setCurrentUrl(evt.target.src);
   }
   onDidNavigateInPage = (evt) => {
     this.props.setCurrentUrl(evt.url);
@@ -51,9 +50,6 @@ class YoutubeMusicView extends React.PureComponent {
   onHomePress = () => {
     this.setAddress(HOME_PAGE_URL);
   }
-  onDownloadPress = () => {
-
-  }
   onRefreshPress = () => {
     try {
       this.webViewDOM.reload();
@@ -61,15 +57,18 @@ class YoutubeMusicView extends React.PureComponent {
       console.log(err);
     }
   }
-
+  onDownloadPress = () => {
+    // TODO
+  }
   setAddress = (url) => {
     try {
-      this.webViewDOM.loadURL(normalizeUrl(url));
+      const currentUrl = normalizeUrl(url);
+      this.webViewDOM.loadURL(currentUrl);
+      this.props.setCurrentUrl(currentUrl);
     } catch (err) {
       console.log(err);
     }
   }
-
   webview = null;
 
   render() {
@@ -80,7 +79,7 @@ class YoutubeMusicView extends React.PureComponent {
           onNextPress={this.onNextPress}
           onHomePress={this.onHomePress}
           onRefreshPress={this.onRefreshPress}
-          onDownloadPress={undefined}
+          onDownloadPress={this.onDownloadPress}
           submitAddress={this.setAddress}
           inProgress={this.props.inProgress}
           currentAddress={this.props.currentUrl}

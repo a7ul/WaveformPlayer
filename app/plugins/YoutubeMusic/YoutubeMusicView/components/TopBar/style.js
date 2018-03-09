@@ -52,7 +52,7 @@ export const AddressBar = styled.input`
  padding: 0 10px;
 `;
 export const Progress = styled(AnimatedLoader)`
-  padding: 0 10px;
+  padding: 0px 10px 10px;
   align-self: center;
   opacity: ${(props) => props.opacity};
 `;
