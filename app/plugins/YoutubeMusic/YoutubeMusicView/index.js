@@ -5,9 +5,10 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import uniq from 'lodash/uniq';
 import * as styles from './style';
-import * as actions from '../redux';
+import * as topBarActions from '../redux/topbar';
 import TopBar from './components/TopBar';
-import { PLUGIN_ID } from '../config';
+import { PLUGIN_ID, HOME_PAGE_URL } from '../config';
+import { normalizeUrl } from '../util';
 
 class YoutubeMusicView extends React.PureComponent {
   componentDidMount() {
@@ -18,14 +19,14 @@ class YoutubeMusicView extends React.PureComponent {
     this.webViewDOM.addEventListener('did-navigate', this.onDidNavigate);
     this.props.closeSideMenu();
   }
-  onStartLoad = () => {
+  onStartLoad = (evt) => {
     this.props.setProgress(true);
+    this.props.setCurrentUrl(evt.target.src);
   }
   onStopLoad = () => {
     this.props.setProgress(false);
     const { history } = this.webViewDOM.getWebContents();
     this.webViewDOM.getWebContents().history = uniq(history); // fix for dual history incase of some sites like youtube
-    console.log(this.webViewDOM, this.webViewDOM.getWebContents().history);
   }
   onDidNavigateInPage = (evt) => {
     this.props.setCurrentUrl(evt.url);
@@ -34,9 +35,40 @@ class YoutubeMusicView extends React.PureComponent {
     this.props.setCurrentUrl(evt.url);
   }
   onBackPress = () => {
-    this.webViewDOM.goBack();
+    try {
+      this.webViewDOM.goBack();
+    } catch (err) {
+      console.log(err);
+    }
   }
-  onNextPress = () => this.webViewDOM.goNext()
+  onNextPress = () => {
+    try {
+      this.webViewDOM.goForward();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  onHomePress = () => {
+    this.setAddress(HOME_PAGE_URL);
+  }
+  onDownloadPress = () => {
+
+  }
+  onRefreshPress = () => {
+    try {
+      this.webViewDOM.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  setAddress = (url) => {
+    try {
+      this.webViewDOM.loadURL(normalizeUrl(url));
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   webview = null;
 
@@ -46,14 +78,14 @@ class YoutubeMusicView extends React.PureComponent {
         <TopBar
           onBackPress={this.onBackPress}
           onNextPress={this.onNextPress}
-          onHomePress
-          onRefreshPress
-          onDownloadPress
-          submitAddress={this.props.setCurrentUrl}
+          onHomePress={this.onHomePress}
+          onRefreshPress={this.onRefreshPress}
+          onDownloadPress={undefined}
+          submitAddress={this.setAddress}
           inProgress={this.props.inProgress}
           currentAddress={this.props.currentUrl}
         />
-        <styles.WebView innerRef={(comp) => { this.webview = comp; }} src={this.props.currentUrl} />
+        <styles.WebView innerRef={(comp) => { this.webview = comp; }} src={HOME_PAGE_URL} />
       </styles.Container>
     );
   }
@@ -73,14 +105,14 @@ YoutubeMusicView.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentUrl: state.plugins[PLUGIN_ID].currentUrl,
-  inProgress: state.plugins[PLUGIN_ID].inProgress
+  currentUrl: state.plugins[PLUGIN_ID].topbar.currentUrl,
+  inProgress: state.plugins[PLUGIN_ID].topbar.inProgress
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  closeSideMenu: () => dispatch(actions.sideMenuToggle(false)),
-  setCurrentUrl: (url) => dispatch(actions.setCurretUrl(url)),
-  setProgress: (inProgress) => dispatch(actions.setProgress(inProgress))
+  closeSideMenu: () => dispatch(topBarActions.sideMenuToggle(false)),
+  setCurrentUrl: (url) => dispatch(topBarActions.setCurretUrl(normalizeUrl(url))),
+  setProgress: (inProgress) => dispatch(topBarActions.setProgress(inProgress))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeMusicView);
