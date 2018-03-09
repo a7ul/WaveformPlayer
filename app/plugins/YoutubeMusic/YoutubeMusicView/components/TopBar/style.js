@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { transparentize } from 'polished';
 import { colors, fonts } from '../../../../../styles/constants';
 import Icon from '../../../../../components/Icon';
 import AnimatedLoader from '../../../../../components/AnimatedLoader';
@@ -29,6 +30,15 @@ export const PostAddress = styled.div`
 const IconStyle = styled(Icon)`
  padding: 5px;
  fill: ${colors.LIGHT_BACKGROUND};
+ border-radius: 3px;
+ &:hover{
+   background: ${transparentize(0.9, colors.LIGHT_BACKGROUND)};
+   cursor: pointer;
+ }
+ &:active{
+   background:${transparentize(0.7, colors.LIGHT_BACKGROUND)};
+   cursor: pointer;
+ }
 `;
 export const BackIcon = IconStyle.extend`
 `;
@@ -44,8 +54,8 @@ export const DownloadIcon = IconStyle.extend`
 export const AddressBar = styled.input`
  display: flex;
  flex-grow: 1;
- height: 20px;
- border-radius: 5px;
+ height: 25px;
+ border-radius: 2px;
  border: 1px solid ${colors.LIGHT_SHADOW};
  font-size: ${fonts.SMALL_SIZE};
  font-weight: ${fonts.BOLD_WEIGHT};
