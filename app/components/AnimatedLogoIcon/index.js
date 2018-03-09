@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as styles from './style';
 
-const AnimatedLoaderIcon = (props) => {
+const AnimatedLogoIcon = (props) => {
   const { size, shouldAnimate, ...extraProps } = props;
   return (
     <svg {...extraProps} width={size} height={size} viewBox="0 -5 15 20">
@@ -12,14 +12,14 @@ const AnimatedLoaderIcon = (props) => {
   );
 };
 
-AnimatedLoaderIcon.defaultProps = {
+AnimatedLogoIcon.defaultProps = {
   size: 200,
   shouldAnimate: true
 };
 
-AnimatedLoaderIcon.propTypes = {
+AnimatedLogoIcon.propTypes = {
   size: PropTypes.number,
   shouldAnimate: PropTypes.bool
 };
 
-export default AnimatedLoaderIcon;
+export default AnimatedLogoIcon;

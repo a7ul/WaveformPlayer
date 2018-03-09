@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Icon from '../../../../../../components/Icon';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 import * as styles from './style';
 
@@ -26,8 +25,8 @@ class SideMenuAccordianHead extends React.Component {
         ? (<ErrorBoundary><component /></ErrorBoundary>)
         : (
           <styles.Container onClick={this.onHeadClick}>
-            <div> {icon ? <Icon size={20} name={icon} /> : null} </div>
-            <div>{label}</div>
+            {icon ? <styles.ItemIcon size={25} name={icon} /> : <styles.ItemIcon size={5} name="fiber_manual_record" /> }
+            <styles.Label>{label}</styles.Label>
             <styles.ExpanderIcon data-show={submenu} data-collapsed={!expanded} name="expand_more" size={20} />
           </styles.Container>
         )

@@ -17,6 +17,23 @@ export const appMenu = {
     { role: 'quit' }
   ]
 };
+
+export const EditMenu = {
+  id: 'editMenu',
+  label: 'Edit',
+  submenu: [
+    { role: 'undo' },
+    { role: 'redo' },
+    { type: 'separator' },
+    { role: 'cut' },
+    { role: 'copy' },
+    { role: 'paste' },
+    { role: 'pasteandmatchstyle' },
+    { role: 'delete' },
+    { role: 'selectall' }
+  ]
+};
+
 export const viewMenu = {
   id: 'viewMenu',
   label: 'View',
@@ -54,4 +71,3 @@ export const pluginMenu = {
   label: 'Plugins',
   submenu: []
 };
-

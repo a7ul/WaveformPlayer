@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors, fonts } from '../../../../styles/constants';
 import measurements from '../../../../styles/measurements';
 import Icon from '../../../../components/Icon';
-import AnimatedLoaderIcon from '../../../../components/AnimatedLoaderIcon';
+import AnimatedLogoIcon from '../../../../components/AnimatedLogoIcon';
 
 export const Container = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ export const Title = styled.p`
   font-weight: ${fonts.MEDIUM_WEIGHT};
 `;
 
-export const AnimatedIcon = styled(AnimatedLoaderIcon)`
+export const AnimatedIcon = styled(AnimatedLogoIcon)`
   padding-right: 5px;
   margin-top: -2px;
 `;
