@@ -3,9 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import uniq from 'lodash/uniq';
+import result from 'lodash/result';
 import * as styles from './style';
 import * as topBarActions from '../redux/topbar';
+import * as downloadActions from '../redux/download';
 import TopBar from './components/TopBar';
 import { PLUGIN_ID, HOME_PAGE_URL } from '../config';
 import { normalizeUrl } from '../util';
@@ -21,7 +22,6 @@ class YoutubeMusicView extends React.PureComponent {
   }
   onStartLoad = () => {
     this.props.setProgress(true);
-    // console.log(evt.target.src, 'CURRENT');
   }
   onStopLoad = (evt) => {
     this.props.setProgress(false);
@@ -58,7 +58,9 @@ class YoutubeMusicView extends React.PureComponent {
     }
   }
   onDownloadPress = () => {
-    // TODO
+    const { fetchDownloadMeta, currentUrl } = this.props;
+    const url = result(this.webViewDOM, 'src', currentUrl);
+    fetchDownloadMeta(url);
   }
   setAddress = (url) => {
     try {
@@ -99,6 +101,7 @@ YoutubeMusicView.propTypes = {
   closeSideMenu: PropTypes.func.isRequired,
   setCurrentUrl: PropTypes.func.isRequired,
   setProgress: PropTypes.func.isRequired,
+  fetchDownloadMeta: PropTypes.func.isRequired,
   currentUrl: PropTypes.string,
   inProgress: PropTypes.bool
 };
@@ -111,7 +114,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   closeSideMenu: () => dispatch(topBarActions.sideMenuToggle(false)),
   setCurrentUrl: (url) => dispatch(topBarActions.setCurretUrl(normalizeUrl(url))),
-  setProgress: (inProgress) => dispatch(topBarActions.setProgress(inProgress))
+  setProgress: (inProgress) => dispatch(topBarActions.setProgress(inProgress)),
+  fetchDownloadMeta: (url) => dispatch(downloadActions.getDownloadMeta(url))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeMusicView);

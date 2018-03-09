@@ -5,7 +5,8 @@ export const DOWNLOAD_START = 'YOUTUBE_MUSIC/DOWNLOAD_START';
 export const DOWNLOAD_SUCCESS = 'YOUTUBE_MUSIC/DOWNLOAD_SUCCESS';
 export const DOWNLOAD_FAILED = 'YOUTUBE_MUSIC/DOWNLOAD_FAILED';
 
-
+export const startDownload = createAction(DOWNLOAD_START);
+export const getDownloadMeta = createAction(DOWNLOAD_GET_META);
 // Initial State
 export const defaultState = [
 //   {
