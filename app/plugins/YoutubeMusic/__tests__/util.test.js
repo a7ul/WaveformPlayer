@@ -42,10 +42,11 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
     140          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k, 3.83MiB
     278          webm       256x144    144p  109k , webm container, vp9, 24fps, video only, 2.83MiB
     133          mp4        426x240    240p  307k , avc1.4d4015, 24fps, video only, 6.76MiB
+    17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k
+    36           3gp        320x180    small , mp4v.20.3, mp4a.40.2
+    22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)
+    22mp41280x720hd720 , avc1.64001F, mp4a.40.2@192k (best) //some weird case that parser throws error
     `;
-    // 17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k
-    // 36           3gp        320x180    small , mp4v.20.3, mp4a.40.2
-    // 22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)
     expect(parseVideoDownloadMetadata(message)).toEqual({
       id: 'IIIHwusog8k',
       formats: [
@@ -55,7 +56,9 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'audio only',
           codec: 'opus @ 50k',
           resolution: '57k',
-          size: '1.57MiB'
+          size: '1.57MiB',
+          error: null,
+          fallback: '249          webm       audio only DASH audio   57k , opus @ 50k, 1.57MiB'
         },
         {
           code: 140,
@@ -63,7 +66,9 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'audio only',
           codec: 'mp4a.40.2@128k',
           resolution: '128k',
-          size: '3.83MiB'
+          size: '3.83MiB',
+          error: null,
+          fallback: '140          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k, 3.83MiB'
         },
         {
           code: 278,
@@ -71,7 +76,9 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'video only',
           codec: 'vp9',
           resolution: '256x144',
-          size: '2.83MiB'
+          size: '2.83MiB',
+          error: null,
+          fallback: '278          webm       256x144    144p  109k , webm container, vp9, 24fps, video only, 2.83MiB'
         },
         {
           code: 133,
@@ -79,32 +86,45 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'video only',
           codec: 'avc1.4d4015',
           resolution: '426x240',
-          size: '6.76MiB'
+          size: '6.76MiB',
+          error: null,
+          fallback: '133          mp4        426x240    240p  307k , avc1.4d4015, 24fps, video only, 6.76MiB'
+        },
+        {
+          code: 17,
+          extension: '3gp',
+          note: 'both av',
+          codec: 'mp4v.20.3',
+          resolution: '176x144',
+          size: 'NA',
+          error: null,
+          fallback: '17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k'
+        },
+        {
+          code: 36,
+          extension: '3gp',
+          note: 'both av',
+          codec: 'mp4v.20.3',
+          resolution: '320x180',
+          size: 'NA',
+          error: null,
+          fallback: '36           3gp        320x180    small , mp4v.20.3, mp4a.40.2'
+        },
+        {
+          code: 22,
+          extension: 'mp4',
+          note: 'both av',
+          codec: 'avc1.64001F',
+          resolution: '1280x720',
+          size: 'NA',
+          error: null,
+          fallback: '22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)'
+        },
+        {
+          code: 22,
+          error: new TypeError('Cannot read property \'trim\' of undefined'),
+          fallback: '22mp41280x720hd720 , avc1.64001F, mp4a.40.2@192k (best) //some weird case that parser throws error'
         }
-        // {
-        //   code: 17,
-        //   extension: '3gp',
-        //   note: 'both',
-        //   codec: 'mp4v.20.3',
-        //   resolution: '176x144',
-        //   size: 'NA'
-        // },
-        // {
-        //   code: 36,
-        //   extension: '3gp',
-        //   note: 'both',
-        //   codec: 'mp4v.20.3',
-        //   resolution: '320x180',
-        //   size: 'NA'
-        // },
-        // {
-        //   code: 22,
-        //   extension: 'mp4',
-        //   note: 'both',
-        //   codec: 'avc1.64001F',
-        //   resolution: '1280x720',
-        //   size: 'NA'
-        // }
       ]
     });
   });
