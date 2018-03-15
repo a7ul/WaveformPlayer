@@ -1,4 +1,4 @@
-import { extractVideoId, extractFormatInfo } from './helpers';
+import { extractVideoId, extractFormatInfo } from './parsers';
 
 const errorRegex = /ERROR:/;
 

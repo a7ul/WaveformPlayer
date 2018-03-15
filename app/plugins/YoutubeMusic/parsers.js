@@ -61,7 +61,7 @@ export const bothAVExtractor = (rawAVItem) => {
     note: 'both av',
     codec: codec.trim(),
     resolution: meta[meta.length - 2],
-    size: 'NA'
+    size: null
   };
 };
 

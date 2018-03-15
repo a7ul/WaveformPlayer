@@ -96,7 +96,7 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'both av',
           codec: 'mp4v.20.3',
           resolution: '176x144',
-          size: 'NA',
+          size: null,
           error: null,
           fallback: '17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k'
         },
@@ -106,7 +106,7 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'both av',
           codec: 'mp4v.20.3',
           resolution: '320x180',
-          size: 'NA',
+          size: null,
           error: null,
           fallback: '36           3gp        320x180    small , mp4v.20.3, mp4a.40.2'
         },
@@ -116,7 +116,7 @@ describe('Parser: YoutubeDL downloadm metadata', () => {
           note: 'both av',
           codec: 'avc1.64001F',
           resolution: '1280x720',
-          size: 'NA',
+          size: null,
           error: null,
           fallback: '22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)'
         },
