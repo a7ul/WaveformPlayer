@@ -8,7 +8,7 @@ export class Router extends React.Component {
   render() {
     return (
       <ConnectedRouter history={routeHistory}>
-        <div className="fullview">
+        <div className="spreadView">
           <Route path="/" component={Home} />
           <Route path="/home" component={Home} />
         </div>

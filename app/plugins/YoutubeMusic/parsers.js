@@ -65,6 +65,7 @@ export const bothAVExtractor = (rawAVItem) => {
   };
 };
 
+export const errorRegex = /ERROR:/;
 
 export const extractFormatInfo = (rawFormatItemString) => {
   const formatItemString = String(rawFormatItemString).trim();

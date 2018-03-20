@@ -1,6 +1,5 @@
-import { extractVideoId, extractFormatInfo } from './parsers';
+import { extractVideoId, errorRegex, extractFormatInfo } from './parsers';
 
-const errorRegex = /ERROR:/;
 
 export const normalizeUrl = (url) => {
   const https = url.slice(0, 8).toLowerCase();

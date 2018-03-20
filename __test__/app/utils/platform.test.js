@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import mockOS from 'mock-os';
-import { getBinaries, getCurrentOS } from '../../../app/utils/platform';
+import { getBinaryPaths, getCurrentOS, getBinaries } from '../../../app/utils/platform';
 
 describe('Platform Utility', () => {
-  describe('getBinaries: returns the binary paths respective to OS', () => {
+  describe('getBinaryPaths: returns the binary paths respective to OS', () => {
     afterEach(() => {
       mockOS.restore();
     });
@@ -14,7 +14,7 @@ describe('Platform Utility', () => {
         YTDL: path.resolve(__dirname, '../../../app/assets/binaries/linux/youtube-dl.bin'),
         FFMPEG: path.resolve(__dirname, '../../../app/assets/binaries/linux/ffmpeg.bin')
       };
-      expect(getBinaries()).toEqual(linuxBinaries);
+      expect(getBinaryPaths()).toEqual(linuxBinaries);
     });
     it('macOS: returns the binary paths on different OS as expected', () => {
       mockOS({ type: 'darwin' });
@@ -22,7 +22,7 @@ describe('Platform Utility', () => {
         YTDL: path.resolve(__dirname, '../../../app/assets/binaries/mac/youtube-dl.bin'),
         FFMPEG: path.resolve(__dirname, '../../../app/assets/binaries/mac/ffmpeg.bin')
       };
-      return expect(getBinaries()).toEqual(macBinaries);
+      return expect(getBinaryPaths()).toEqual(macBinaries);
     });
     it('windows: returns the binary paths on different OS as expected', () => {
       mockOS({ type: 'windows_nt' });
@@ -30,11 +30,11 @@ describe('Platform Utility', () => {
         YTDL: path.resolve(__dirname, '../../../app/assets/binaries/windows/youtube-dl.exe'),
         FFMPEG: path.resolve(__dirname, '../../../app/assets/binaries/windows/ffmpeg.exe')
       };
-      return expect(getBinaries()).toEqual(windowsBinaries);
+      return expect(getBinaryPaths()).toEqual(windowsBinaries);
     });
     it('Linux: expect the binaries to exists', () => {
       mockOS({ type: 'linux' });
-      const binaries = getBinaries();
+      const binaries = getBinaryPaths();
       Object.values(binaries).forEach((executablePath) => {
         expect(fs.existsSync(executablePath)).toEqual(true);
       });
@@ -42,7 +42,7 @@ describe('Platform Utility', () => {
 
     it('MacOS: expect the binaries to exists', () => {
       mockOS({ type: 'darwin' });
-      const binaries = getBinaries();
+      const binaries = getBinaryPaths();
       Object.values(binaries).forEach((executablePath) => {
         expect(fs.existsSync(executablePath)).toEqual(true);
       });
@@ -50,7 +50,7 @@ describe('Platform Utility', () => {
 
     it('Windows: expect the binaries to exists', () => {
       mockOS({ type: 'windows_nt' });
-      const binaries = getBinaries();
+      const binaries = getBinaryPaths();
       Object.values(binaries).forEach((executablePath) => {
         expect(fs.existsSync(executablePath)).toEqual(true);
       });
@@ -62,6 +62,14 @@ describe('Platform Utility', () => {
       mockOS({ type: 'linux' });
       expect(getCurrentOS()).toEqual('LINUX');
       mockOS.restore();
+    });
+  });
+
+  describe('getBinaries: returns the binary executor for each binary', () => {
+    it('should have binary executor for each binary', () => {
+      const countOfBinaryPaths = Object.keys(getBinaryPaths());
+      const countofExecutors = Object.keys(getBinaries());
+      expect(countOfBinaryPaths.length).toEqual(countofExecutors.length);
     });
   });
 });

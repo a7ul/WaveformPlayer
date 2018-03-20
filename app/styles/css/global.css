@@ -2,4 +2,10 @@
   min-height: 100vh;
   min-width: 100%;
   display: flex;
+  flex-direction: column;
+}
+.spreadView {
+  display: flex;
+  width: 100%;
+  flex: 1;
 }
