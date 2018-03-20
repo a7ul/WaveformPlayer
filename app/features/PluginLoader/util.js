@@ -7,14 +7,14 @@ const readDir = promisify(fs.readdir);
 
 export const getPluginList = async (pluginDir) => {
   const fileNames = await readDir(pluginDir);
-  const possibleOnes = fileNames.map((fileName) => {
+  const possiblePlugins = [];
+  fileNames.forEach((fileName) => {
     const pluginPath = path.resolve(pluginDir, fileName);
     try {
-      return require(pluginPath);
+      return possiblePlugins.push(require(pluginPath));
     } catch (err) {
-      logger.error(err);
-      return null;
+      return logger.error(err);
     }
   });
-  return possibleOnes.filter((eachPlugin) => !!eachPlugin);
+  return possiblePlugins;
 };

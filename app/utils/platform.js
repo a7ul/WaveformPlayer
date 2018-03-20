@@ -20,11 +20,19 @@ function getBinaryExecutor(binaryPath) {
   return (commands, onProgress) => execFile(binaryPath, commands, onProgress);
 }
 
-export const getBinaries = () => {
+export const getBinaryPaths = () => {
   const currentOS = getCurrentOS();
   return {
-    youtubeDL: getBinaryExecutor(path.resolve(__dirname, `../assets/binaries/${BINARY_DIR[currentOS]}/youtube-dl${BINARY_EXT[currentOS]}`)),
-    ffmpeg: getBinaryExecutor(path.resolve(__dirname, `../assets/binaries/${BINARY_DIR[currentOS]}/ffmpeg${BINARY_EXT[currentOS]}`))
+    YTDL: (path.resolve(__dirname, `../assets/binaries/${BINARY_DIR[currentOS]}/youtube-dl${BINARY_EXT[currentOS]}`)),
+    FFMPEG: (path.resolve(__dirname, `../assets/binaries/${BINARY_DIR[currentOS]}/ffmpeg${BINARY_EXT[currentOS]}`))
+  };
+};
+
+export const getBinaries = () => {
+  const { YTDL, FFMPEG } = getBinaryPaths();
+  return {
+    youtubeDL: getBinaryExecutor(YTDL),
+    ffmpeg: getBinaryExecutor(FFMPEG)
   };
 };
 

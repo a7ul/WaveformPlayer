@@ -2,7 +2,7 @@ node_modules
 .cache
 build/**/*
 .DS_Store
-app/assets/binaries/**/*.*
+app/assets/binaries/
 *.log
 coverage
 .vscode
