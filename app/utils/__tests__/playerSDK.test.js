@@ -19,10 +19,12 @@ describe('PlayerSDK Utility', () => {
     it('utils: gets all the utils files as a object', () => {
       const { utils } = playerSDK;
       const utilDirPath = path.resolve(__dirname, '../../../app/utils');
-      const filesInThePath = fs.readdirSync(utilDirPath);
+      const allFilesInThePath = fs.readdirSync(utilDirPath);
+      const utilsInThePath = allFilesInThePath.filter((e) => !['__tests__', '__mocks__'].includes(e));
       const exportedUtilsLength = Object.keys(utils).length;
-      const totalActualUtilsIntheFolder = filesInThePath.length;
+      const totalActualUtilsIntheFolder = utilsInThePath.length;
       expect(exportedUtilsLength).toEqual(totalActualUtilsIntheFolder - 1);
     });
   });
 });
+
