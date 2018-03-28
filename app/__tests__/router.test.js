@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../AppContainer';
+import { createStore } from 'redux';
+import { Router } from '../router';
 
-jest.mock('react-dom');
 jest.mock('../utils/audio.js');
-jest.mock('../redux/store.js', () => ({
-  store: {
-    dispatch: jest.fn()
-  }
-}));
 
+const store = createStore(() => ({}));
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<Router store={store} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -106,22 +106,22 @@ export class MusicSource {
       this.onErrorHandler(err);
     }
   }
-  setOnTickHandler = (onTickHandler = noop) => {
+  setOnTickHandler = (onTickHandler) => {
     this.onTickHandler = onTickHandler;
   }
-  setOnPlayHandler = (onPlayHandler = noop) => {
+  setOnPlayHandler = (onPlayHandler) => {
     this.onPlayHandler = onPlayHandler;
   }
-  setOnPauseHandler = (onPauseHandler = noop) => {
+  setOnPauseHandler = (onPauseHandler) => {
     this.onPauseHandler = onPauseHandler;
   }
-  setOnStopHandler = (onStopHandler = noop) => {
+  setOnStopHandler = (onStopHandler) => {
     this.onStopHandler = onStopHandler;
   }
-  setOnSeekHandler = (onSeekHandler = noop) => {
+  setOnSeekHandler = (onSeekHandler) => {
     this.onSeekHandler = onSeekHandler;
   }
-  setOnErrorHandler = (onErrorHandler = noop) => {
+  setOnErrorHandler = (onErrorHandler) => {
     this.onErrorHandler = onErrorHandler;
   }
 }
